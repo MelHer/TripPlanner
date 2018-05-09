@@ -1,2 +1,26 @@
 # TripPlanner
-Web site used to plan your next trip
+
+This project is a website whose main purpose is to plan trips.
+
+The repository contains the source code and the documentation of the project.
+
+Here is the folder structure explaination: 
+
+### www:
+- This folder contains the source code of the website.
+- The architecture used is MVC.
+
+This folder can be deployed on a web server.
+
+### Documentation:
+- Holds the diffrent documents made along the project.
+- Those are the originals.
+
+### Databse:
+- This folder contains:
+	- The final database creation script.
+	- The test database creation script with fictive datas.
+- IT contains also the MCD and the MLD.
+
+
+_The code is written in English but the documents are written in French_
