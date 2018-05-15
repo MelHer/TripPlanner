@@ -16,11 +16,11 @@ This folder can be deployed on a web server.
 - Holds the diffrent documents made along the project.
 - Those are the originals.
 
-### Databse:
+### Database:
 - This folder contains:
 	- The final database creation script.
 	- The test database creation script with fictive datas.
-- IT contains also the MCD and the MLD.
+
 
 
 _The code is written in English but the documents are written in French_
