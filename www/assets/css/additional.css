@@ -1,0 +1,17 @@
+.center{
+    text-align:center;
+}
+
+.error{
+    color: red;
+}
+
+.info{
+    color: green;
+}
+
+.head_Text
+{
+    color: #e6e6e6;
+    padding-right: 2em;
+}

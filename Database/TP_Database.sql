@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `Trip` (
     `Private` TINYINT(1) NOT NULL DEFAULT 1,
     `Password` VARCHAR(60) NULL,
     `Image` TINYINT(1) NOT NULL DEFAULT 0,
+    `Creation` DATE NOT NULL,
     PRIMARY KEY (`idTrip`),
     UNIQUE INDEX `idTrip_UNIQUE` (`idTrip` ASC),
     INDEX `fk_User_Organizer_Id` (`fkUser_Organizer` ASC),
@@ -175,13 +176,13 @@ CREATE TABLE IF NOT EXISTS `Activity` (
 
 
 -- ---------------------------
--- Create the Item table
+-- Create the prerequisites table
 -- ---------------------------
-DROP TABLE IF EXISTS `Item`;
-CREATE TABLE IF NOT EXISTS `Item` (
+DROP TABLE IF EXISTS `Prerequisite`;
+CREATE TABLE IF NOT EXISTS `Prerequisite` (
     `idItem` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `Name` VARCHAR(45) NOT NULL,
-    `Quantity` TINYINT UNSIGNED NOT NULL DEFAULT 1,
+    `Quantity` TINYINT UNSIGNED NULL,
     `fkTrip` INT UNSIGNED NOT NULL,
     `Ready` TINYINT(1) NOT NULL DEFAULT 0,
     PRIMARY KEY (`idItem`),
@@ -217,10 +218,3 @@ CREATE TABLE IF NOT EXISTS `Participant` (
     ON UPDATE CASCADE
 )ENGINE = InnoDB  DEFAULT CHARSET=utf8;
 
-
--- --------------------------------
--- Create user to use the database
--- --------------------------------
-DROP USER IF EXISTS 'Trip_Planner_User';
-CREATE USER 'Trip_Planner_User' IDENTIFIED BY 'Tp15Gr8';
-GRANT DELETE, INSERT, SELECT, UPDATE ON tablut.* TO 'Trip_Planner_User';

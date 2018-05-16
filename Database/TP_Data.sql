@@ -17,16 +17,16 @@ VALUES("User1","user1@hotmail.fr","$2y$10$lMiV0qYJK22vy0zXdrZmBusxMkQDsFzhLFIAUd
 
 -- TRIPS
 
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image) values (1, 'ultrices posuere ', 'Esperantina', false, "$2y$10$UEE5axVx195swniiti84z.BihzLzEUlUUsCcAzaRnqaWY44beWjSW", true);
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image) values (2, 'mauris sit amet eros ', 'Tizgane', false, "$2y$10$RXamuH6ZWoFua75O5NZsMuSJO8u8a2dqGFqug9gIft9R01hVDaYJO", false);
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image) values (3, 'facilisi cras ', 'Kopidlno', true, null, false);
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image) values (1, 'sociis natoque penatibus et', 'Rybatskoye', true, null, true);
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image) values (1, 'volutpat eleifend donec ut dolor ', 'Castanheira do Campo', true, null, false);
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image) values (1, 'nulla ultrices aliquet maecenas', 'Antagan Segunda', true, null, true);
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image) values (1, 'posuere felis sed', 'Danja', true, null, true);
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image) values (1, 'pellentesque ultrices', 'Jombang', true, null, false);
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image) values (3, 'amet nulla quisque', 'Tonshayevo', true, null, true);
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image) values (3, 'pulvinar loborti', 'Otradnaya', true, null, false);
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (1, 'ultrices posuere ', 'Esperantina', false, "$2y$10$UEE5axVx195swniiti84z.BihzLzEUlUUsCcAzaRnqaWY44beWjSW", true, '09/03/2018');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (2, 'mauris sit amet eros ', 'Tizgane', false, "$2y$10$RXamuH6ZWoFua75O5NZsMuSJO8u8a2dqGFqug9gIft9R01hVDaYJO", false, '10/05/2018');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (3, 'facilisi cras ', 'Kopidlno', true, null, false, '15/01/2018');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (1, 'sociis natoque penatibus et', 'Rybatskoye', true, null, true, '16/02/2018');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (1, 'volutpat eleifend donec ut dolor ', 'Castanheira do Campo', true, null, false, '17/03/2018');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (1, 'nulla ultrices aliquet maecenas', 'Antagan Segunda', true, null, true, '18/03/2018');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (1, 'posuere felis sed', 'Danja', true, null, true, '20/06/2018');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (1, 'pellentesque ultrices', 'Jombang', true, null, false, '25/06/2018');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (3, 'amet nulla quisque', 'Tonshayevo', true, null, true, '26/09/2018');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (3, 'pulvinar loborti', 'Otradnaya', true, null, false,'29/011/2017');
 
 -- TRANSPORTS
 
@@ -100,46 +100,46 @@ insert into Activity (fkTrip, Description, Price, Link, Note, Image) values (10,
 
 -- ITEMS
 
-insert into Item (fkTrip, Name, Quantity, Ready) values (1, 'mi integer', 1, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (2, 'proin at turpis a', 2, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (3, 'rutrum at lorem', 3, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (4, 'posuere cubilia curae', 4, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (5, 'consequat', 5, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (6, 'sollicitudin mi', 6, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (7, 'justo sollicitudin ut', 7, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (8, 'risus praesent', 8, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (9, 'justo', 9, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (10, 'condimentum', 10, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (1, 'duis', 11, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (2, 'faucibus', 12, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (3, 'ante ipsum primis', 13, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (4, 'in', 14, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (5, 'velit', 15, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (6, 'nibh in', 16, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (7, 'duis', 17, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (8, 'risus', 18, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (9, 'luctus', 19, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (10, 'donec quis orci', 20, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (1, 'in tempor turpis', 21, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (2, 'erat', 22, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (3, 'ac', 23, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (4, 'sagittis dui vel nisl duis', 24, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (5, 'sit amet', 25, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (6, 'felis sed interdum venenatis turpis', 26, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (7, 'at', 27, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (8, 'ultrices posuere cubilia', 28, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (9, 'cursus', 29, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (10, 'eget', 30, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (1, 'commodo vulputate justo in', 31, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (2, 'at lorem integer tincidunt ante', 32, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (3, 'et ultrices posuere cubilia', 33, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (4, 'vitae quam suspendisse', 34, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (5, 'blandit', 35, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (6, 'molestie', 36, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (7, 'in tempus sit amet sem', 37, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (8, 'sed justo', 38, true);
-insert into Item (fkTrip, Name, Quantity, Ready) values (9, 'dictumst etiam faucibus cursus', 39, false);
-insert into Item (fkTrip, Name, Quantity, Ready) values (10, 'augue aliquam erat', 40, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (1, 'mi integer', 1, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (2, 'proin at turpis a', 2, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (3, 'rutrum at lorem', 3, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (4, 'posuere cubilia curae', 4, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (5, 'consequat', 5, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (6, 'sollicitudin mi', 6, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (7, 'justo sollicitudin ut', 7, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (8, 'risus praesent', 8, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (9, 'justo', 9, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (10, 'condimentum', 10, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (1, 'duis', 11, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (2, 'faucibus', 12, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (3, 'ante ipsum primis', 13, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (4, 'in', 14, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (5, 'velit', 15, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (6, 'nibh in', 16, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (7, 'duis', 17, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (8, 'risus', 18, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (9, 'luctus', 19, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (10, 'donec quis orci', 20, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (1, 'in tempor turpis', 21, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (2, 'erat', 22, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (3, 'ac', 23, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (4, 'sagittis dui vel nisl duis', 24, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (5, 'sit amet', 25, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (6, 'felis sed interdum venenatis turpis', 26, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (7, 'at', 27, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (8, 'ultrices posuere cubilia', 28, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (9, 'cursus', 29, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (10, 'eget', 30, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (1, 'commodo vulputate justo in', 31, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (2, 'at lorem integer tincidunt ante', 32, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (3, 'et ultrices posuere cubilia', 33, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (4, 'vitae quam suspendisse', 34, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (5, 'blandit', 35, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (6, 'molestie', 36, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (7, 'in tempus sit amet sem', 37, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (8, 'sed justo', 38, true);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (9, 'dictumst etiam faucibus cursus', 39, false);
+insert into Prerequisite (fkTrip, Name, Quantity, Ready) values (10, 'augue aliquam erat', 40, true);
 
 -- Participants
 

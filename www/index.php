@@ -12,9 +12,36 @@ try
 
         switch ($action)
         {
+            //Home page
             case 'home' :
-                welcome();
+                welcome(); 
                 break;
+                
+            //Registration page
+            case 'register' :
+                register();
+                break;
+
+            //Logout page
+            case 'logout' :
+                logout();
+                break;
+           
+            //Login page
+            case 'login' :
+                login();
+                break;
+
+            //Deleting account
+            case 'delete_Account' :
+                delete_Account();
+                break;
+
+            //Change the account password
+            case 'change_Password';
+                change_Password();
+                break;
+                
             default :
                 throw new Exception();
         }
