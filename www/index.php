@@ -1,8 +1,20 @@
 <?php
-session_set_cookie_params(1200);
 session_start();
 
+date_default_timezone_set('Europe/Zurich');
+
+//About users/home/login
 require  'controller/controller.php';
+//About trips displaying/editing/creating/deleting
+require 'controller/controller_Trip.php';
+//About lodging displaying/editing/creating/deleting
+require 'controller/controller_Lodging.php';
+//About transport displaying/editing/creating/deleting
+require 'controller/controller_Transport.php';
+//About transport displaying/editing/creating/deleting
+//require 'controller/controller_Activity.php';
+//About prerequisite displaying/editing/creating/deleting
+//require 'controller/controller_Prerequisite.php';
 
 try
 {
@@ -15,6 +27,11 @@ try
             //Home page
             case 'home' :
                 welcome(); 
+                break;
+                
+            //Home page
+            case 'credit_Icon' :
+                credit_Icon(); 
                 break;
                 
             //Registration page
@@ -41,6 +58,61 @@ try
             case 'change_Password';
                 change_Password();
                 break;
+            
+            //User trips
+            case 'my_Trip';
+                my_Trip();
+                break;
+            
+            //New trip creation
+            case 'new_Trip';
+                new_Trip();
+                break;
+            
+            //Show trip details, loding, transport and creation menu for lodgin, transport...
+            case 'see_Trip';
+                see_Trip();
+                break;
+                
+            //Change trip infos
+            case 'change_Trip';
+                change_Trip();
+                break;
+            
+            //Confirms a trip removal
+            case 'delete_Trip';
+                delete_Trip();
+                break;
+                
+            //Add new lodging for the trip
+            case 'new_Lodging';
+                new_Lodging();
+                break;
+                
+            //Change a lodging
+            case 'change_Lodging';
+                change_Lodging();
+                break;
+                
+            //Confirms a lodging removal
+            case 'delete_Lodging';
+                delete_Lodging();
+                break;
+                
+            //Add new lodging for the trip
+            case 'new_Transport';
+                new_Transport();
+                break;
+                
+            //Change a transport
+            case 'change_Transport';
+                change_Transport();
+                break;
+                
+            //Confirms a transport removal
+            case 'delete_Transport';
+                delete_Transport();
+                break;
                 
             default :
                 throw new Exception();
@@ -55,4 +127,5 @@ try
 catch (Exception $e)
 {
    //TODO: Call error page.
+    echo 'Exception reçue : ',  $e->getMessage(), "\n";
 }

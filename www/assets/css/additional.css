@@ -15,3 +15,84 @@
     color: #e6e6e6;
     padding-right: 2em;
 }
+
+.link_Button
+{
+    background-color: #666;
+    border-radius: 6px;
+    border: 0;
+	color: #ffffff;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 400;
+	height: 3em;
+	line-height: 3em;
+	padding: 0 2em;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.current_Page
+{
+	background-color: #e89980;
+    border-radius: 6px;
+    border: 0;
+	color: #ffffff;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 400;
+	height: 3em;
+	line-height: 3em;
+	padding: 0 2em;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.link_Button:hover
+{
+    background-color: #737373;
+}
+
+.thumbnail
+{
+    height: 64px;
+    width: 64px;
+}
+
+.text_Center
+{
+    vertical-align: middle;
+}
+
+.trip_Control
+{
+    display: inline;
+}
+
+.not_Visible
+{
+    display:none
+}
+            
+.visible
+{
+    display:block;
+}
+
+.no_Border
+{
+    border: none;
+}
+
+.flow_Control
+{
+    max-width: 10%;
+    overflow-x: auto;
+}
+
+#long_Table tbody tr:nth-child(4n+1),#long_Table tbody tr:nth-child(4n+2)
+{
+    background-color: #f8f8f8;
+}

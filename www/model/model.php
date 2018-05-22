@@ -6,7 +6,8 @@
  */
 function connect() 
 {
-    $connexion = new PDO('mysql:host=localhost;dbname=trip_planner;charset=utf8', 'root', '');
+    //$connexion = new PDO('mysql:host=localhost;dbname=trip_planner;charset=utf8', 'root', '');
+    $connexion = new PDO('mysql:host=localhost;dbname=tripplanne_db;charset=utf8', 'tripplanne_db', 'P@$$w0rd');
    
     $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $connexion;

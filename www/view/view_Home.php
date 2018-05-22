@@ -6,7 +6,6 @@
     <div class="12u">
         <!-- Text -->
         <section class="box">
-
         </section>
 	</div>
 </div>

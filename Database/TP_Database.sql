@@ -7,9 +7,9 @@
 -- Drop the schema if he already exists.
 -- Create the schema.
 -- --------------------------------------
-DROP SCHEMA IF EXISTS `Trip_Planner`;
-CREATE SCHEMA `Trip_Planner`;
-USE `Trip_Planner`;
+-- DROP SCHEMA IF EXISTS `Trip_Planner`;
+-- CREATE SCHEMA `Trip_Planner`;
+USE `tripplanne_db`;
 
 -- ---------------------------
 -- Create the User table.
@@ -37,6 +37,8 @@ CREATE TABLE IF NOT EXISTS `Trip` (
     `Password` VARCHAR(60) NULL,
     `Image` TINYINT(1) NOT NULL DEFAULT 0,
     `Creation` DATE NOT NULL,
+    `Date_Start` DATE NOT NULL,
+    `Date_End` DATE NOT NULL,
     PRIMARY KEY (`idTrip`),
     UNIQUE INDEX `idTrip_UNIQUE` (`idTrip` ASC),
     INDEX `fk_User_Organizer_Id` (`fkUser_Organizer` ASC),
@@ -67,6 +69,7 @@ VALUES ("Avion"),
 ("Train"),
 ("Tram"),
 ("Voiture"),
+("Vélo"),
 ("Autre");
 
 -- ---------------------------
@@ -78,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `Transport` (
     `fkTrip` INT UNSIGNED NOT NULL,
     `fkTransport_Type` TINYINT UNSIGNED NOT NULL,
     `Place_Start` VARCHAR(45) NOT NULL,
-    `Place_end` VARCHAR(45) NOT NULL,
+    `Place_End` VARCHAR(45) NOT NULL,
     `Day_Start` DATE NOT NULL,
     `Day_End` DATE NOT NULL,
     `Time_Start` TIME NULL,
@@ -115,11 +118,13 @@ CREATE TABLE IF NOT EXISTS `Lodging_Type` (
 
 
 INSERT INTO Lodging_Type (Type)
-VALUES ("Hôtel"),
+VALUES("Appartement"),
 ("Auberge de jeunesse"),
 ("Camping"),
+("Hôtel"),
 ("Maison"),
-("Cabane");
+("Cabane"),
+("Autre");
 
 -- ---------------------------
 -- Create the Lodging table.
@@ -161,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `Activity` (
     `fkTrip` INT UNSIGNED NOT NULL,
     `Description` VARCHAR(45) NOT NULL,
     `Price` FLOAT(10,2) UNSIGNED NOT NULL DEFAULT 0,
-    `Date` DATETIME NULL,
+    `Date` DATE NULL,
     `Link` TEXT(255) NULL,
     `Note` TEXT(280) NULL,
     `Image` TINYINT(1) NOT NULL DEFAULT 0,
@@ -180,12 +185,12 @@ CREATE TABLE IF NOT EXISTS `Activity` (
 -- ---------------------------
 DROP TABLE IF EXISTS `Prerequisite`;
 CREATE TABLE IF NOT EXISTS `Prerequisite` (
-    `idItem` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `idPrerequisite` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `Name` VARCHAR(45) NOT NULL,
-    `Quantity` TINYINT UNSIGNED NULL,
+    `Quantity` SMALLINT UNSIGNED NULL,
     `fkTrip` INT UNSIGNED NOT NULL,
     `Ready` TINYINT(1) NOT NULL DEFAULT 0,
-    PRIMARY KEY (`idItem`),
+    PRIMARY KEY (`idPrerequisite`),
     INDEX `fk_Item_Trip_Id` (`fkTrip` ASC),
     CONSTRAINT `fk_Item_Trip`
     FOREIGN KEY (`fkTrip`)

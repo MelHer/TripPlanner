@@ -25,13 +25,13 @@
 					<nav id="nav">
 						<ul>
                             <?php if(isset($_SESSION['user'])){ ?>
-                            <li><h5 class="head_Text">Bonjour <?php echo $_SESSION['nickname'];?></h5></li>
+                            <li><h5 class="head_Text">Bonjour <?php echo htmlspecialchars($_SESSION['nickname']);?></h5></li>
                             <?php } ?>
 							<li><a href="#">Voyages publics</a></li>
 							
 							<!-- Dynamic menu-->
 							<?php if(isset($_SESSION['user'])){ ?>
-								<li><a href="#">Mes voyages</a></li>
+								<li><a href="index.php?action=my_Trip&page=1">Mes voyages</a></li>
 								<li>
 									<a href="#" class="icon fa-angle-down">Mon compte</a>
 									<ul>
@@ -56,7 +56,7 @@
 					<ul class="actions">
                         <li><a href="#" class="button">Voyages publics</a></li>
 						<?php if(isset($_SESSION['user'])){ ?>
-							<li><a href="index.php?action=register" class="button">Mes voyages</a></li>
+							<li><a href="index.php?action=my_Trip&page=1" class="button">Mes voyages</a></li>
 							<li><a href="index.php?action=logout" class="button">Déconnexion</a></li>
 						<?php }else{ ?>
 							<li><a href="index.php?action=register" class="button">Inscription</a></li>
@@ -71,10 +71,8 @@
 				<footer id="footer">
 					<ul class="copyright">
                         <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-                        <div>Plane icon by <a href="https://www.flaticon.com/authors/graphberry" title="GraphBerry">GraphBerry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-                        <div>Sun icon by <a href="https://www.flaticon.com/authors/pause08" title="Pause08">Pause08</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-                        <div>Park and house iconby <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-						<div>Concept réalisé par Herzig Melvyn</div>
+                        <div><a href="index.php?action=credit_Icon">Crédits des icônes</a></div>
+						<div>Concept imaginé et réalisé par Herzig Melvyn</div>
 					</ul>
 				</footer>
 

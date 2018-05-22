@@ -3,7 +3,8 @@
 -- Environment: Created for MySQL.
 -- Script made to: Insert unreal datas into Trip Planner database.
 
-USE `Trip_Planner`;
+-- USE `Trip_Planner`;
+USE `tripplanne_db`;
 
 -- ---------------------------
 -- Inserting datas
@@ -17,16 +18,16 @@ VALUES("User1","user1@hotmail.fr","$2y$10$lMiV0qYJK22vy0zXdrZmBusxMkQDsFzhLFIAUd
 
 -- TRIPS
 
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (1, 'ultrices posuere ', 'Esperantina', false, "$2y$10$UEE5axVx195swniiti84z.BihzLzEUlUUsCcAzaRnqaWY44beWjSW", true, '09/03/2018');
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (2, 'mauris sit amet eros ', 'Tizgane', false, "$2y$10$RXamuH6ZWoFua75O5NZsMuSJO8u8a2dqGFqug9gIft9R01hVDaYJO", false, '10/05/2018');
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (3, 'facilisi cras ', 'Kopidlno', true, null, false, '15/01/2018');
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (1, 'sociis natoque penatibus et', 'Rybatskoye', true, null, true, '16/02/2018');
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (1, 'volutpat eleifend donec ut dolor ', 'Castanheira do Campo', true, null, false, '17/03/2018');
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (1, 'nulla ultrices aliquet maecenas', 'Antagan Segunda', true, null, true, '18/03/2018');
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (1, 'posuere felis sed', 'Danja', true, null, true, '20/06/2018');
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (1, 'pellentesque ultrices', 'Jombang', true, null, false, '25/06/2018');
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (3, 'amet nulla quisque', 'Tonshayevo', true, null, true, '26/09/2018');
-insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation) values (3, 'pulvinar loborti', 'Otradnaya', true, null, false,'29/011/2017');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation, Date_Start, Date_End) values (1, 'ultrices posuere ', 'Esperantina', false, "$2y$10$UEE5axVx195swniiti84z.BihzLzEUlUUsCcAzaRnqaWY44beWjSW", false, '201802-08', '2018-03-01', '2018-03-20');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation, Date_Start, Date_End) values (2, 'mauris sit amet eros ', 'Tizgane', false, "$2y$10$RXamuH6ZWoFua75O5NZsMuSJO8u8a2dqGFqug9gIft9R01hVDaYJO", false, '2018-05-10', '2018-08-09','2018-09-20');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation, Date_Start, Date_End) values (3, 'facilisi cras ', 'Kopidlno', true, null, false, '2018-01-15', '2018-03-02', '2018-03-09');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation, Date_Start, Date_End) values (1, 'sociis natoque penatibus et', 'Rybatskoye', true, null, false, '2018-02-16', '2018-03-09', '2018-03-20');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation, Date_Start, Date_End) values (1, 'volutpat eleifend donec ut dolor ', 'Castanheira do Campo', true, null, false, '2018-03-17', '2018-03-20','2018-03-25');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation, Date_Start, Date_End) values (1, 'nulla ultrices aliquet maecenas', 'Antagan Segunda', true, null, false, '2018-03-18', '2018-03-28','2018-03-30');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation, Date_Start, Date_End) values (1, 'posuere felis sed', 'Danja', true, null, false, '2018-06-20', '2018-07-09', '2018-08-09');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation, Date_Start, Date_End) values (1, 'pellentesque ultrices', 'Jombang', true, null, false, '2018-06-25', '2018-09-09','2018-10-09');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation, Date_Start, Date_End) values (3, 'amet nulla quisque', 'Tonshayevo', true, null, false, '2018-09-26', '2018-09-27', '2018-09-28');
+insert into Trip (fkUser_Organizer, Title, Destination, Private, Password, Image, Creation, Date_Start, Date_End) values (3, 'pulvinar loborti', 'Otradnaya', true, null, false,'2017-11-29', '2018-12-09','2018-12-10');
 
 -- TRANSPORTS
 

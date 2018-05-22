@@ -1795,7 +1795,7 @@
 		background: #f5f5f5;
 	}
 
-	body, input, select, textarea {
+	body, button, input, select, textarea {
 		color: #777;
 		font-family: "Source Sans Pro", sans-serif;
 		font-size: 16pt;
@@ -2001,7 +2001,9 @@
 		font-weight: 300;
 		margin: 0 0 1em 0;
 	}
-
+	input[type="time"],
+	input[type="date"],
+	input[type="number"],
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
@@ -2022,6 +2024,9 @@
 		width: 100%;
 	}
 
+		input[type="time"]:invalid,
+		input[type="date"]:invalid,
+		input[type="number"]:invalid,
 		input[type="text"]:invalid,
 		input[type="password"]:invalid,
 		input[type="email"]:invalid,
@@ -2030,6 +2035,9 @@
 			box-shadow: none;
 		}
 
+		input[type="time"]:focus,
+		input[type="date"]:focus,
+		input[type="number"]:focus,
 		input[type="text"]:focus,
 		input[type="password"]:focus,
 		input[type="email"]:focus,
@@ -2547,7 +2555,7 @@
 			border-right: 0;
 		}
 
-			table tbody tr:nth-child(2n + 1) {
+			#simple_Table tbody tr:nth-child(2n + 1) {
 				background-color: #f8f8f8;
 			}
 
@@ -2599,6 +2607,7 @@
 
 /* Button */
 
+	button,
 	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
@@ -2626,6 +2635,7 @@
 		white-space: nowrap;
 	}
 
+        button:hover,
 		input[type="submit"]:hover,
 		input[type="reset"]:hover,
 		input[type="button"]:hover,
@@ -2633,6 +2643,7 @@
 			background-color: #737373;
 		}
 
+        button:active,
 		input[type="submit"]:active,
 		input[type="reset"]:active,
 		input[type="button"]:active,
@@ -2640,6 +2651,7 @@
 			background-color: #595959;
 		}
 
+        button.icon,
 		input[type="submit"].icon,
 		input[type="reset"].icon,
 		input[type="button"].icon,
@@ -2647,6 +2659,7 @@
 			padding-left: 1.35em;
 		}
 
+            button.icon:before,
 			input[type="submit"].icon:before,
 			input[type="reset"].icon:before,
 			input[type="button"].icon:before,
@@ -2654,6 +2667,7 @@
 				margin-right: 0.5em;
 			}
 
+        button.fit,
 		input[type="submit"].fit,
 		input[type="reset"].fit,
 		input[type="button"].fit,
@@ -2662,7 +2676,8 @@
 			margin: 0 0 1em 0;
 			width: 100%;
 		}
-
+        
+        button.small,
 		input[type="submit"].small,
 		input[type="reset"].small,
 		input[type="button"].small,
@@ -2672,6 +2687,7 @@
 			line-height: 2.7em;
 		}
 
+        button.big,
 		input[type="submit"].big,
 		input[type="reset"].big,
 		input[type="button"].big,
@@ -2681,6 +2697,7 @@
 			line-height: 2.7em;
 		}
 
+        button.alt,
 		input[type="submit"].alt,
 		input[type="reset"].alt,
 		input[type="button"].alt,
@@ -2690,13 +2707,15 @@
 			color: #777;
 		}
 
+            button.alt:hover,
 			input[type="submit"].alt:hover,
 			input[type="reset"].alt:hover,
 			input[type="button"].alt:hover,
 			.button.alt:hover {
 				background-color: #f8f8f8;
 			}
-
+            
+            button.alt:active,
 			input[type="submit"].alt:active,
 			input[type="reset"].alt:active,
 			input[type="button"].alt:active,
@@ -2704,6 +2723,7 @@
 				background-color: #f0f0f0;
 			}
 
+            button.alt.icon:before,
 			input[type="submit"].alt.icon:before,
 			input[type="reset"].alt.icon:before,
 			input[type="button"].alt.icon:before,
@@ -2711,6 +2731,7 @@
 				color: #999;
 			}
 
+        button.special,
 		input[type="submit"].special,
 		input[type="reset"].special,
 		input[type="button"].special,
@@ -2719,6 +2740,7 @@
 			color: #ffffff !important;
 		}
 
+            button.special:hover,
 			input[type="submit"].special:hover,
 			input[type="reset"].special:hover,
 			input[type="button"].special:hover,
@@ -2726,6 +2748,7 @@
 				background-color: #ecaa96;
 			}
 
+            button.special:active,
 			input[type="submit"].special:active,
 			input[type="reset"].special:active,
 			input[type="button"].special:active,
@@ -2733,6 +2756,7 @@
 				background-color: #e4886a;
 			}
 
+        button.disabled,button.disabled:disabled,
 		input[type="submit"].disabled, input[type="submit"]:disabled,
 		input[type="reset"].disabled,
 		input[type="reset"]:disabled,
@@ -3243,7 +3267,7 @@
 
 		/* Basic */
 
-			body, input, select, textarea {
+			body, button, input, select, textarea {
 				font-size: 13pt;
 			}
 
@@ -3261,7 +3285,7 @@
 
 		/* Basic */
 
-			body, input, select, textarea {
+			body, button, input, select, textarea {
 				font-size: 11pt;
 			}
 
@@ -3289,7 +3313,7 @@
 
 		/* Basic */
 
-			body, input, select, textarea {
+			body, button, input, select, textarea {
 				font-size: 11pt;
 			}
 
@@ -3309,7 +3333,7 @@
 				overflow-x: hidden;
 			}
 
-			body, input, select, textarea {
+			body, button, input, select, textarea {
 				font-size: 11pt;
 			}
 
@@ -3530,7 +3554,7 @@
 
 		/* Basic */
 
-			body, input, select, textarea {
+			body, buttpm, input, select, textarea {
 				font-size: 11pt;
 			}
 

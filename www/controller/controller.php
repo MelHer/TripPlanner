@@ -1,6 +1,11 @@
 <?php
 
 require "model/model.php";
+require "model/model_Trip.php";
+require "model/model_Lodging.php";
+require "model/model_Transport.php";
+//require "model/model_Activity.php";
+//require "model/model_Prerequisite.php";
 
 /**
  * @brief Call the home view. This view uses a diffrent template.
@@ -8,6 +13,14 @@ require "model/model.php";
 function welcome()
 {
     require "view/view_Home.php";
+}
+
+/**
+ * @brief Call the icons credit view.
+ */
+function credit_Icon()
+{
+    require "view/view_Credit_Icon.php";
 }
 
 /**
@@ -34,6 +47,11 @@ function register()
                                 create_User($_POST['nickname'], $_POST['email'], $_POST['password']);
                                 $_SESSION['user'] = $_POST['email'];
                                 $_SESSION['nickname'] = $_POST['nickname'];
+                                $_SESSION['id'] = check_Nickname($_POST['nickname']);
+
+                                //Creating user folder
+                                $id = $_SESSION['id'];
+                                mkdir("images/user$id", 0700);
 
                                 require "view/view_Home.php";
                             }
@@ -103,6 +121,7 @@ function login()
             {
                 $_SESSION['user'] = $_POST['email'];
                 $_SESSION['nickname'] = get_Nickname($_POST['email']);
+                $_SESSION['id'] = check_Nickname($_SESSION['nickname']);
                 require "view/view_Home.php";
             }
             else
@@ -134,6 +153,11 @@ function delete_Account()
         
         if(password_verify($_POST['password'],$password_DB))
         {
+            //Delete user folder
+            $id = $_SESSION['id'];
+            $target = "images/user$id";
+            delete_files($target);
+
             remove_User($_SESSION['user']);
             session_destroy();
             header('Location: index.php');
@@ -147,6 +171,27 @@ function delete_Account()
     else
     {
         require "view/view_Delete_Account.php";
+    }
+}
+
+/**
+ * @brief Deletes the folders of the users when deleting account.
+ * @param Takes the path of the source folder to begin.
+ */
+function delete_files($target) {
+    if(is_dir($target))
+    {
+        $files = glob( $target . '*', GLOB_MARK );
+
+        foreach( $files as $file )
+        {
+            delete_files( $file );      
+        }
+        rmdir( $target );
+    }
+    elseif(is_file($target))
+    {
+        unlink( $target );  
     }
 }
 
@@ -177,5 +222,5 @@ function change_Password()
         }
     }
     require "view/view_Change_Password.php";
-
 }
+

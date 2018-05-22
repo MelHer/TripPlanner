@@ -26,13 +26,13 @@
 					<nav id="nav">
 						<ul>
                             <?php if(isset($_SESSION['user'])){ ?>
-                            <li><h5 class="head_Text">Bonjour <?php echo $_SESSION['nickname'];?></h5></li>
+                            <li><h5 class="head_Text">Bonjour <?php echo htmlspecialchars($_SESSION['nickname']);?></h5></li>
                             <?php } ?>
 							<li><a href="#">Voyages publics</a></li>
 							
 							<!-- Dynamic menu-->
 							<?php if(isset($_SESSION['user'])){ ?>
-								<li><a href="#">Mes voyages</a></li>
+								<li><a href="index.php?action=my_Trip&page=1">Mes voyages</a></li>
 								<li>
 									<a href="#" class="icon fa-angle-down">Mon compte</a>
 									<ul>
@@ -58,11 +58,9 @@
 			<!-- Footer -->
 				<footer id="footer">
 					<ul class="copyright">
-                        <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li><br><br>
-                        <div>Plane icon by <a href="https://www.flaticon.com/authors/graphberry" title="GraphBerry">GraphBerry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-                        <div>Sun icon by <a href="https://www.flaticon.com/authors/pause08" title="Pause08">Pause08</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-                        <div>Park and house iconby <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-						<div>Concept réalisé par Herzig Melvyn</div>
+                        <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                        <div><a href="index.php?action=credit_Icon">Crédits des icônes</a></div>
+						<div>Concept imaginé et réalisé par Herzig Melvyn</div>
 					</ul>
 				</footer>
 
@@ -70,6 +68,7 @@
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
+			
 			<script src="assets/js/jquery.dropotron.min.js"></script> 
 			<script src="assets/js/jquery.scrollgress.min.js"></script> 
 			<script src="assets/js/skel.min.js"></script>
@@ -77,6 +76,8 @@
 			<script src="assets/js/util.js"></script>
 			
 			<script src="assets/js/main.js"></script>
+
+			<script src="assets/js/desc_Trip.js"></script>
 
 	</body>
 </html>
