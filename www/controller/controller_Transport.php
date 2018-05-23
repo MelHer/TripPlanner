@@ -69,7 +69,7 @@ function new_Transport()
                             rename($file_Destination,"images/user".$_SESSION['id']."/".$id_Trip."/Transport/".$id['0']['idTransport'].".jpg");
                         }
                         
-                        header("Location: index.php?action=see_Trip&id=".$id_Trip);   
+                        header("Location: index.php?action=see_Trip&id=".$id_Trip."/#transport");   
                     }
                     else
                     {
@@ -170,7 +170,7 @@ function change_Transport()
                             rename($file_Destination,"images/user".$_SESSION['id']."/".$transport['fkTrip']."/Transport/".$transport['idTransport'].".jpg");
                         }
                         
-                        header("Location: index.php?action=see_Trip&id=".$transport['fkTrip']);
+                        header("Location: index.php?action=see_Trip&id=".$transport['fkTrip']."/#transport");
                     }
                     else
                     {
@@ -231,7 +231,7 @@ function delete_Transport()
                     $target = "images/user".$_SESSION['id']."/".$transport['fkTrip']."/Transport/".$transport['idTransport'].".jpg";
                     delete_files($target);
                     
-                    header("Location: index.php?action=see_Trip&id=".$transport['fkTrip']);
+                    header("Location: index.php?action=see_Trip&id=".$transport['fkTrip']."/#transport");
                 }
                 else
                 {

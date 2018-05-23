@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @brief Displays form to create a new lodging.
+ * @brief Displays form to create a new activity.
  */
-function new_Lodging()
+function new_Activity()
 {
     if(isset($_SESSION['user']) && !empty($_SESSION['user']))
     {
@@ -17,14 +17,14 @@ function new_Lodging()
                 $id_Trip=1;
             }
             
-            //Check if the user created the requested trip id to add a lodging.
+            //Check if the user created the requested trip id to add an activity
             $trip = get_Trip($_SESSION['id'],$id_Trip);
             if(isset($trip) && !empty($trip))
             {
                 if($_POST)
                 {
                     //Checking datas
-                    $checking = check_Lodging_Data($_POST);
+                    $checking = check_Activity_Data($_POST);
                     if($checking == "")
                     {
                         //Image verifications
@@ -54,34 +54,31 @@ function new_Lodging()
                             else
                             {
                                 $error_Message = $checking;
-                                $lodging_Types = get_Lodging_Type();
-                                require "view/view_New_Lodging.php";
+                                require "view/view_New_Activity.php";
                             }
                         }   
                                     
                         //Create record into db
-                        $id = create_Lodging($_GET['id'],$_POST['address'],$_POST['date_Start'],$_POST['date_End'],$_POST['price'],$_POST['type'],$_POST['code'],$_POST['link'],$_POST['note'],$image);
+                        $id = create_Activity($_GET['id'],$_POST['description'],$_POST['date_Activity'],$_POST['price'],$_POST['link'],$_POST['note'],$image);
                                     
                         if($image == true)
                         {
-                            $file_Destination = "images/user".$_SESSION['id']."/".$id_Trip."/Lodging/".$file_Tmp_New_Name;
+                            $file_Destination = "images/user".$_SESSION['id']."/".$id_Trip."/Activity/".$file_Tmp_New_Name;
                             move_uploaded_file($file_Tmp_Name,$file_Destination);
-                            rename($file_Destination,"images/user".$_SESSION['id']."/".$id_Trip."/Lodging/".$id['0']['idLodging'].".jpg");
+                            rename($file_Destination,"images/user".$_SESSION['id']."/".$id_Trip."/Activity/".$id['0']['idActivity'].".jpg");
                         }
                                     
-                        header("Location: index.php?action=see_Trip&id=".$id_Trip."/#lodging");
+                        header("Location: index.php?action=see_Trip&id=".$id_Trip."/#activity");
                     }
                     else
                     {
                         $error_Message = $checking;
-                        $lodging_Types = get_Lodging_Type();
-                        require "view/view_New_Lodging.php";
-                    }                          
+                        require "view/view_New_Activity.php";
+                    }   
                 }
                 else
                 {
-                    $lodging_Types = get_Lodging_Type();
-                    require "view/view_New_Lodging.php";  
+                    require "view/view_New_Activity.php";
                 } 
             }
             else
@@ -101,31 +98,31 @@ function new_Lodging()
 }
 
 /**
- * @brief Displays the edit form for loging or validates datas.
+ * @brief Displays the edit form for activity or validates datas.
  */
-function change_Lodging()
+function change_Activity()
 {
     if(isset($_SESSION['user']) && !empty($_SESSION['user']))
     {
         if(isset($_GET['id']) && !empty($_GET['id']))
         {
-            $id_Lodging = intval($_GET['id']);
-            $id_Lodging = abs($id_Lodging);
+            $id_Activity = intval($_GET['id']);
+            $id_Activity = abs($id_Activity);
             
-            if($id_Lodging==0)
+            if($id_Activity==0)
             {
-                $id_Lodging=1;
+                $id_Activity=1;
             }
             
             //Check if the user created the requested lodging.
-            $lodging = get_Lodging($_SESSION['id'],$id_Lodging);
-            if(isset($lodging) && !empty($lodging))
+            $activity = get_Activity($_SESSION['id'],$id_Activity);
+            if(isset($activity) && !empty($activity))
             {
                 
                 if($_POST)
                 {
                     //Checking datas
-                    $checking = check_Lodging_Data($_POST);
+                    $checking = check_Activity_Data($_POST);
                     if($checking == "")
                     {
                         //Image verifications
@@ -155,37 +152,33 @@ function change_Lodging()
                             else
                             {
                                 $error_Message = $checking;
-                                $lodging_Types = get_Lodging_Type();
-                                require "view/view_Change_Lodging.php";
+                                require "view/view_Change_Activity.php";
                             }
                         }
                         
                         //Updates record
-                        update_Lodging($lodging['idLodging'],$_POST['address'],$_POST['date_Start'],$_POST['date_End'],$_POST['price'],$_POST['type'],$_POST['code'],$_POST['link'],$_POST['note'],$image);
+                        update_Activity($activity['idActivity'],$_POST['description'],$_POST['date_Activity'],$_POST['price'],$_POST['link'],$_POST['note'],$image);
                                     
                                     
                         if($image == true)
                         {
-                            $file_Destination = "images/user".$_SESSION['id']."/".$lodging['fkTrip']."/Lodging/".$file_Tmp_New_Name;
+                            $file_Destination = "images/user".$_SESSION['id']."/".$activity['fkTrip']."/Activity/".$file_Tmp_New_Name;
                             move_uploaded_file($file_Tmp_Name,$file_Destination);
-                            rename($file_Destination,"images/user".$_SESSION['id']."/".$lodging['fkTrip']."/Lodging/".$lodging['idLodging'].".jpg");
+                            rename($file_Destination,"images/user".$_SESSION['id']."/".$activity['fkTrip']."/Activity/".$activity['idActivity'].".jpg");
                         }
                                     
-                        header("Location: index.php?action=see_Trip&id=".$lodging['fkTrip']."/#lodging");
+                        header("Location: index.php?action=see_Trip&id=".$activity['fkTrip']."/#activity");
                     }
                     else
                     {
                         $error_Message = $checking;
-                        $lodging_Types = get_Lodging_Type();
-                        require "view/view_Change_Lodging.php";
-                    }                       
+                        require "view/view_Change_Activity.php";
+                    }                 
                 }
                 else
                 {
-                    $lodging_Types = get_Lodging_Type();
-                    require "view/view_Change_Lodging.php";
+                    require "view/view_Change_Activity.php";
                 } 
-                
             }
             else
             {
@@ -204,39 +197,39 @@ function change_Lodging()
 }
 
 /**
- * @brief Displays the confirm lodging removal form or deletes it.
+ * @brief Displays the confirm activity removal form or deletes it.
  */
-function delete_Lodging()
+function delete_Activity()
 {
     if(isset($_SESSION['user']) && !empty($_SESSION['user']))
     {
         if(isset($_GET['id']) && !empty($_GET['id']))
         {
-            $id_Lodging = intval($_GET['id']);
-            $id_Lodging = abs($id_Lodging);
+            $id_Activity = intval($_GET['id']);
+            $id_Activity = abs($id_Activity);
             
-            if($id_Lodging==0)
+            if($id_Activity==0)
             {
-                $id_Lodging=1;
+                $id_Activity=1;
             }
             
             //Check if the user created the requested lodging.
-            $lodging = get_Lodging($_SESSION['id'],$id_Lodging);
-            if(isset($lodging) && !empty($lodging))
+            $activity = get_Activity($_SESSION['id'],$id_Activity);
+            if(isset($activity) && !empty($activity))
             {
                 
                 if($_POST)
                 {
-                    remove_Lodging($lodging['idLodging']);
+                    remove_Activity($activity['idActivity']);
                     
-                    $target = "images/user".$_SESSION['id']."/".$lodging['fkTrip']."/Lodging/".$lodging['idLodging'].".jpg";
+                    $target = "images/user".$_SESSION['id']."/".$activity['fkTrip']."/Activity/".$activity['idActivity'].".jpg";
                     delete_files($target);
                     
-                    header("Location: index.php?action=see_Trip&id=".$lodging['fkTrip']."/#lodging");
+                    header("Location: index.php?action=see_Trip&id=".$activity['fkTrip']."/#activity");
                 }
                 else
                 {
-                    require "view/view_Delete_Lodging.php";
+                    require "view/view_Delete_Activity.php";
                 } 
                 
             }
@@ -261,51 +254,33 @@ function delete_Lodging()
  * @param $m_Datas Data from $_POST
  * @return Returns a message: empty if OK else an error message.
  */
-function check_Lodging_Data($m_Datas)
+function check_Activity_Data($m_Datas)
 {
     $checking = "";
     
-    if(isset($m_Datas['address']) && !empty($m_Datas['address']) && strlen($m_Datas['address'])<=45)
+    if(isset($m_Datas['description']) && !empty($m_Datas['description']) && strlen($m_Datas['description'])<=45)
     {
-        if(isset($m_Datas['date_Start']) && isset($m_Datas['date_End']) && strtotime($m_Datas['date_Start']) && strtotime($m_Datas['date_End']) && $m_Datas['date_Start'] <= $m_Datas['date_End'])
+        if(isset($m_Datas['date_Activity']) && (strtotime($m_Datas['date_Activity']) || $m_Datas['date_Activity']== null ))
         {
             $price = floatval($m_Datas['price']);
             if($price >= 0 && $price <= 90000000)
-            {   
-                //checking id of lodging type
-                $lodging_Types = get_Lodging_Type();
-                if($m_Datas['type'] > 0 && $m_Datas['type'] <= count($lodging_Types))
+            {    
+                if(isset($m_Datas['link']) && strlen($m_Datas['link']) <= 255)
                 {
-                    if(isset($m_Datas['code']) && strlen($m_Datas['code']) <= 45)
+                    if(isset($m_Datas['note']) && strlen($m_Datas['note']) < 280)
                     {
-                        if(isset($m_Datas['link']) && strlen($m_Datas['link']) <= 255)
-                        {
-                            if(isset($m_Datas['note']) && strlen($m_Datas['note']) < 280)
-                            {
-                               return $checking;
-                            }
-                            else
-                            {
-                                $checking = "Remarque non valide";
-                                return $checking;
-                            }
-                                    
-                        }
-                        else
-                        {
-                           $checking = "Lien non valide";
-                            return $checking;
-                        }
+                        return $checking;
                     }
                     else
                     {
-                        $checking = "Code non valide";
+                        $checking = "Remarque non valide";
                         return $checking;
                     }
+                                    
                 }
                 else
                 {
-                    $checking = "Type non valide";
+                    $checking = "Lien non valide";
                     return $checking;
                 }
             }
@@ -317,13 +292,13 @@ function check_Lodging_Data($m_Datas)
         }
         else
         {
-            $checking = "Dates non valides";
+            $checking = "Date non valide";
             return $checking;
         }
     }
     else
     {
-        $checking = "Adresse non valide";
+        $checking = "Description non valide";
         return $checking;        
      }
 }

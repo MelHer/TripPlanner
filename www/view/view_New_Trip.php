@@ -62,7 +62,7 @@
                         }
                     ?>
                 </div>
-				<div class="row uniform">
+				<div class="row uniform 50%">
 					<div class="12u" align="center">
 						<ul class="actions">
 					        <li><input type="submit" value="Créer" /></li>		

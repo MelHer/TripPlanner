@@ -178,6 +178,7 @@ function see_Trip()
                 $transports = get_Transport_From_Trip($id_Trip);
                 $activities = get_Activity_From_Trip($id_Trip);
                 $prerequisites = get_Prerequisite_From_Trip($id_Trip);
+                $participants = get_Participants_From_Trip($id_Trip);
                 require "view/view_Detailed_Trip.php";  
             }
             else

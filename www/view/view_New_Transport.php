@@ -83,11 +83,11 @@
                         }
                     ?>
                 </div>
-				<div class="row uniform">
+				<div class="row uniform 50%">
 					<div class="12u" align="center">
 						<ul class="actions">
 					        <li><input type="submit" value="Créer" /></li>
-                            <li><a class="button" href="<?php echo "index.php?action=see_Trip&id=".$_GET['id']?>">Annuler</a></li>	
+                            <li><a class="button" href="<?php echo "index.php?action=see_Trip&id=".$_GET['id']?>/#transport">Annuler</a></li>	
 						</ul>
 					</div>
 				</div>

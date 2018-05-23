@@ -19,11 +19,11 @@
                         Voulez vous continuer votre action?</h4>
                     </div>
 				</div>
-				<div class="row uniform">
+				<div class="row uniform 50%">
 					<div class="12u" align="center">
 						<ul class="actions">
 					        <li><input class="special" type="submit" value="Confirmer" /></li>
-                            <li><a class="button" href="<?php echo "index.php?action=see_Trip&id=".$lodging['fkTrip']?>">Annuler</a></li>	
+                            <li><a class="button" href="<?php echo "index.php?action=see_Trip&id=".$lodging['fkTrip']?>/#lodging">Annuler</a></li>	
 						</ul>
 					</div>
 				</div>

@@ -43,7 +43,7 @@
             </div>
             
             <!--Lodging-->
-            <div class="row">
+            <div class="row" id="lodging">
                 <div class="6u 6u(mobilep)">
                     <ul class="actions">
                         <li><h3>Hébergements</h3></a></li>
@@ -108,7 +108,7 @@
 		</section>
     
         <!-- Transports -->
-        <section class="box">
+        <section class="box" id="transport">
             <div class="row">
                 <div class="6u 6u(mobilep)">
                     <ul class="actions">
@@ -173,6 +173,151 @@
                                         echo '</tr>';
                                         echo '<tr>';
                                         echo '<td class="text_Center" colspan="6">Type: '.$transport['Type'].' Code: '.htmlspecialchars($transport['Code']).'<br> Remarque: '.htmlspecialchars($transport['Note']).'</td>';
+                                        echo '</tr>';
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+			         </div>            
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Activites -->
+        <section class="box" id="activity">
+            <div class="row">
+                <div class="6u 6u(mobilep)">
+                    <ul class="actions">
+                        <li><h3>Activités</h3></a></li>
+                        <li><a class="button alt" href="index.php?action=new_Activity&id=<?php echo $trip['idTrip']; ?>">Ajouter</a></li>
+				    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="12u">
+                    <div class="table-wrapper">
+				        <table id="long_Table">
+				            <tbody>
+                                <?php 
+                                    foreach($activities as $activity)
+                                    {
+                                        $day = date_create($activity['Date']);
+                                        
+                                        echo '<tr>';
+                                
+                                        //image
+                                        if($activity['Image'] == true)
+                                        {
+                                            echo "<td><img class='thumbnail' src='images/user".$_SESSION["id"]."/".$trip['idTrip']."/Activity/".$activity['idActivity'].".jpg'></td>";
+                                        }
+                                        else
+                                        {
+                                            echo '<td><img class="thumbnail" src="images/default_Activity.png"></td>';     
+                                        }
+                               
+                                        echo '<td class="text_Center">Description: '.htmlspecialchars($activity['Description']).'<br> Prix: '.$activity['Price'].' CHF</td>';
+                                        
+                                        if($activity['Link']=="")
+                                        {
+                                            if($activity['Date'] != null)
+                                            {
+                                                 echo '<td class="text_Center">Le: '.date_format($day,"d-m-Y").'<br><br> </td>';
+                                            }
+                                            else
+                                            {
+                                                echo '<td class="text_Center"><br><br> </td>';
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if($activity['Date'] != null)
+                                            {
+                                                 echo '<td class="text_Center">'.date_format($day,"d-m-Y").'<br><a href="'.htmlspecialchars($activity['Link']).'">lien</a></td>';     
+                                            }
+                                            else
+                                            {
+                                                echo '<td class="text_Center"><a href="'.htmlspecialchars($activity['Link']).'">lien</a><br><br></td>';
+                                            }
+                                        }
+                                        echo "<td><a class='no_Border' href='index.php?action=change_Activity&id=".$activity['idActivity']."'><img src='images/edit.png'></a></td><td><a class='no_Border' href='index.php?action=delete_Activity&id=".$activity['idActivity']."'><img src='images/delete.png'></a></td>";
+                                        echo '</tr>';
+                                        echo '<tr>';
+                                        echo '<td class="text_Center" colspan="6">Remarque: '.htmlspecialchars($activity['Note']).'</td>';
+                                        echo '</tr>';
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+			         </div>            
+                </div>
+            </div>
+        </section>
+
+        <!-- Prerequisites -->
+        <section class="box" id="prerequisite">
+            <div class="row">
+                <div class="6u 6u(mobilep)">
+                    <ul class="actions">
+                        <li><h3>Prérequis</h3></a></li>
+                        <li><a class="button alt" href="index.php?action=new_Prerequisite&id=<?php echo $trip['idTrip']; ?>">Ajouter</a></li>
+				    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="12u">
+                    <div class="table-wrapper">
+				        <table id="simple_Table">
+				            <tbody>
+                                <?php 
+                                    foreach($prerequisites as $prerequisite)
+                                    {   
+                                        echo '<tr>';
+                                        echo '<td>'.htmlspecialchars($prerequisite['Name']).'</td>';
+                                        echo '<td> quantité:'.htmlspecialchars($prerequisite['Quantity']).'</td>';
+                                        if($prerequisite['Ready'] == true)
+                                        {
+                                            echo '<td><input type="checkbox" id="'.$prerequisite['idPrerequisite'].'" name="'.$prerequisite['idPrerequisite'].'"onclick="return false;" checked/>
+                                            <label for="'.$prerequisite['idPrerequisite'].'"></label></td>'; //Without the label, the input doesn't render   
+                                        }
+                                        else
+                                        {
+                                            echo '<td><input type="checkbox" id="'.$prerequisite['idPrerequisite'].'" name="'.$prerequisite['idPrerequisite'].'"onclick="return false;" />
+                                            <label for="'.$prerequisite['idPrerequisite'].'"></label></td>'; //Without the label, the input doesn't render
+                                        }
+                                        echo "<td><a class='no_Border' href='index.php?action=change_Prerequisite&id=".$prerequisite['idPrerequisite']."'><img src='images/edit.png'></a></td><td><a class='no_Border' href='index.php?action=delete_Prerequisite&id=".$prerequisite['idPrerequisite']."'><img src='images/delete.png'></a></td>";
+                                        echo '</tr>';
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+			         </div>            
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Participants -->
+        <section class="box" id="participant">
+            <div class="row">
+                <div class="6u 6u(mobilep)">
+                    <ul class="actions">
+                        <li><h3>Participants</h3></a></li>
+                        <!--<li><a class="button alt" href="index.php?action=see_Participant&id=<php echo $trip['idTrip']; ?>">Ajouter</a></li>-->
+				    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="12u">
+                    <div class="table-wrapper">
+				        <table id="simple_Table">
+				            <tbody>
+                                <?php 
+                                    foreach($participants as $participant)
+                                    {   
+                                        echo '<tr>';
+                                        echo '<td>'.htmlspecialchars($participant['Nickname']).'</td>';
+                                        echo "<td align='right'><a class='no_Border' href='index.php?action=delete_Participant&id=".$_GET['id']."&participant=".$participant['fkUser']."'><img src='images/delete.png'></a></td>";
                                         echo '</tr>';
                                     }
                                 ?>

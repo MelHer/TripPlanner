@@ -12,9 +12,11 @@ require 'controller/controller_Lodging.php';
 //About transport displaying/editing/creating/deleting
 require 'controller/controller_Transport.php';
 //About transport displaying/editing/creating/deleting
-//require 'controller/controller_Activity.php';
+require 'controller/controller_Activity.php';
 //About prerequisite displaying/editing/creating/deleting
-//require 'controller/controller_Prerequisite.php';
+require 'controller/controller_Prerequisite.php';
+//About prerequisite displaying/editing/creating/deleting
+require 'controller/controller_Participant.php';
 
 try
 {
@@ -112,6 +114,41 @@ try
             //Confirms a transport removal
             case 'delete_Transport';
                 delete_Transport();
+                break;
+                
+            //Add a new activity to a trip
+            case 'new_Activity';
+                new_Activity();
+                break;
+                
+            //Change an activity
+            case 'change_Activity';
+                change_Activity();
+                break;
+                
+            //Confirms an activity removal
+            case 'delete_Activity';
+                delete_Activity();
+                break;
+
+            //Add a new prerequisite to a trip
+            case 'new_Prerequisite';
+                new_Prerequisite();
+                break;
+
+            //Change a prerequisite
+            case 'change_Prerequisite';
+                change_Prerequisite();
+                break;
+
+            //Confirms a prerequisite removal
+            case 'delete_Prerequisite';
+                delete_Prerequisite();
+                break;
+
+            //Confirms a participant removal
+            case 'delete_Participant';
+                delete_Participant();
                 break;
                 
             default :

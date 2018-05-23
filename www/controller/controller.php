@@ -4,8 +4,9 @@ require "model/model.php";
 require "model/model_Trip.php";
 require "model/model_Lodging.php";
 require "model/model_Transport.php";
-//require "model/model_Activity.php";
-//require "model/model_Prerequisite.php";
+require "model/model_Activity.php";
+require "model/model_Prerequisite.php";
+require "model/model_Participant.php";
 
 /**
  * @brief Call the home view. This view uses a diffrent template.

@@ -113,16 +113,14 @@
                     <?php
                         if (isset($error_Message) && !empty($error_Message)) {
                             echo $error_Message;
-                            print_r($_POST['time_Start']);
-                            print_r($_POST['time_End']);
                         }
                     ?>
                 </div>
-				<div class="row uniform">
+				<div class="row uniform 50%">
 					<div class="12u" align="center">
 						<ul class="actions">
 					        <li><input type="submit" value="Modifier" /></li>
-                            <li><a class="button" href="<?php echo "index.php?action=see_Trip&id=".$_GET['id']?>">Annuler</a></li>	
+                            <li><a class="button" href="<?php echo "index.php?action=see_Trip&id=".$transport['fkTrip'];?>/#transport">Annuler</a></li>	
 						</ul>
 					</div>
 				</div>

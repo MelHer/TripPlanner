@@ -46,3 +46,11 @@ function two_Decimal()
     document.getElementById('price').value = Math.abs(price);
 }
 
+/**
+ * @brief Converts quantity field to integer.
+ */
+function no_Decimal()
+{
+    var price = parseInt(document.getElementById('quantity').value)
+    document.getElementById('quantity').value = Math.abs(price);
+}
