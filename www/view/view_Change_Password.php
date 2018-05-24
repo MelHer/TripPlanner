@@ -10,7 +10,7 @@
         <!-- Text -->
         <section class="box">
 			<form method="post" action="index.php?action=change_Password">
-			<div class="row uniform 50%">
+				<div class="row uniform 50%">
 					<div class="12u 12u(mobilep)">
 						<input type="password" name="old_Password"placeholder="Ancien mot de passe" maxlength="50" required/>
 					</div>

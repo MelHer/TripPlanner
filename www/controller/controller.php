@@ -9,7 +9,7 @@ require "model/model_Prerequisite.php";
 require "model/model_Participant.php";
 
 /**
- * @brief Call the home view. This view uses a diffrent template.
+ * @brief Calls the home view. This view uses a diffrent template.
  */
 function welcome()
 {
@@ -17,7 +17,7 @@ function welcome()
 }
 
 /**
- * @brief Call the icons credit view.
+ * @brief Calls the icons credit view.
  */
 function credit_Icon()
 {
@@ -25,7 +25,7 @@ function credit_Icon()
 }
 
 /**
- * @brief Call the registration view.
+ * @brief Calls the registration view or validates datas from the registration.
  */
 function register()
 {
@@ -33,17 +33,20 @@ function register()
     {
         if(isset($_POST['nickname']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_Confirmation']))
         {
+            //Username and usage
             if(preg_match('#^([a-zA-Z0-9-_]{2,36})$#', $_POST['nickname']))
             {
                 $nickname_Used = check_Nickname($_POST['nickname']);
                 if(!isset($nickname_Used))
                 {
+                    //Check mail syntax and usage
                     if(preg_match( "#^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$#",$_POST['email']))
                     {
                         $email_Used = check_Mail($_POST['email']);
                         if(!isset($email_Used))
                         {
-                            if($_POST['password'] == $_POST['password_Confirmation'] && !empty($_POST['password']))
+                            //Password 
+                            if($_POST['password'] == $_POST['password_Confirmation'] && !empty($_POST['password']) && strlen($_POST['password'])>= 6 && strlen($_POST['password'])<= 50)
                             {   
                                 create_User($_POST['nickname'], $_POST['email'], $_POST['password']);
                                 $_SESSION['user'] = $_POST['email'];
@@ -52,13 +55,13 @@ function register()
 
                                 //Creating user folder
                                 $id = $_SESSION['id'];
-                                mkdir("images/user$id", 0700);
+                                mkdir("images/user$id", 0755);
 
                                 require "view/view_Home.php";
                             }
                             else
                             {   
-                                $error_Message = "Les mots de passe ne correspondent pas ou ne peuvent être laissés vides";
+                                $error_Message = "Les mots de passe ne correspondent pas ou ne peuvent être laissés vides. Ils doivent être longs entre 6 et 50 caractères";
                                 require "view/view_Registration.php";
                             }
                         }
@@ -106,7 +109,7 @@ function logout()
     header('Location: index.php');
 }
 
-/*
+/**
  * @brief Connects the user or displays login form.
  */
 function login()
@@ -127,7 +130,7 @@ function login()
             }
             else
             {
-                $error_Message = "Mot de passe incorrecte";
+                $error_Message = "Mot de passe incorrect";
                 require "view/view_Login.php";
             }
         }
@@ -207,14 +210,14 @@ function change_Password()
 
         if(password_verify($_POST['old_Password'],$password_DB))
         {
-            if($_POST['new_Password']===$_POST['new_Password_Confirmation'])
+            if($_POST['new_Password']===$_POST['new_Password_Confirmation'] && strlen($_POST['new_Password'])>= 6 && strlen($_POST['new_Password'])<= 50)
             {
                 update_Password($_SESSION['user'],$_POST['new_Password']);
                 $info_Message = "Le mot de passe a été mis à jour";
             }
             else
             {
-                $error_Message = "Les nouveaux mots de passe ne correspondent pas";
+                $error_Message = "Les nouveaux mots de passe ne correspondent pas où sont invalides (entre 6 et 50 caractères).";
             }
         }
         else
@@ -225,3 +228,27 @@ function change_Password()
     require "view/view_Change_Password.php";
 }
 
+/**
+ * @brief Displays error page.
+ */
+function error()
+{
+    require "view/view_Error.php";
+}
+
+/**
+ * @brief Check if the parameter is a valid number > 0;
+ * @param INT variable to transform into valid number.
+ */
+function check_Number($m_Number)
+{
+    $number = intval($m_Number);
+    $number = abs($number);
+            
+    if($number==0)
+    {
+        $number=1;
+    }
+
+    return $number;
+}

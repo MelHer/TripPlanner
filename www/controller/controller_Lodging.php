@@ -9,13 +9,7 @@ function new_Lodging()
     {
         if(isset($_GET['id']) && !empty($_GET['id']))
         {
-            $id_Trip = intval($_GET['id']);
-            $id_Trip = abs($id_Trip);
-            
-            if($id_Trip==0)
-            {
-                $id_Trip=1;
-            }
+            $id_Trip = check_Number($_GET['id']);
             
             //Check if the user created the requested trip id to add a lodging.
             $trip = get_Trip($_SESSION['id'],$id_Trip);
@@ -109,13 +103,7 @@ function change_Lodging()
     {
         if(isset($_GET['id']) && !empty($_GET['id']))
         {
-            $id_Lodging = intval($_GET['id']);
-            $id_Lodging = abs($id_Lodging);
-            
-            if($id_Lodging==0)
-            {
-                $id_Lodging=1;
-            }
+            $id_Lodging = check_Number($_GET['id']);
             
             //Check if the user created the requested lodging.
             $lodging = get_Lodging($_SESSION['id'],$id_Lodging);
@@ -212,14 +200,8 @@ function delete_Lodging()
     {
         if(isset($_GET['id']) && !empty($_GET['id']))
         {
-            $id_Lodging = intval($_GET['id']);
-            $id_Lodging = abs($id_Lodging);
-            
-            if($id_Lodging==0)
-            {
-                $id_Lodging=1;
-            }
-            
+            $id_Lodging = check_Number($_GET['id']);
+        
             //Check if the user created the requested lodging.
             $lodging = get_Lodging($_SESSION['id'],$id_Lodging);
             if(isset($lodging) && !empty($lodging))

@@ -49,7 +49,7 @@
                             //image
                             if($activity['Image'] == true)
                             {
-                                 echo "<td><img class='thumbnail' src='images/user".$_SESSION["id"]."/".$activity['fkTrip']."/Activity/".$activity['idActivity'].".jpg'></td>";
+                                 echo "<td><a class='no_Border' href='images/user".$_SESSION["id"]."/".$activity['fkTrip']."/Activity/".$activity['idActivity'].".jpg'><img class='thumbnail' src='images/user".$_SESSION["id"]."/".$activity['fkTrip']."/Activity/".$activity['idActivity'].".jpg'></a></td>";
                             }
                                  else
                             {

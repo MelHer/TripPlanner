@@ -2,50 +2,57 @@
     ob_start();
 ?>
 <header>
-	<h2><?php echo htmlspecialchars($trip['Title']);?></h2>
-	<p><?php echo htmlspecialchars($trip['Destination']);?></p>
+	<h2><?php echo htmlspecialchars($registred_Trip['Title']);?></h2>
+	<p><?php echo htmlspecialchars($registred_Trip['Destination']);?></p>
 </header>
 <div class="row">
-    <div class="12u">
-        <!-- Text -->
+    <div class="12u"
+    >
+        
         <section class="box">
-            
             <!-- Controls-->
+            <div class="info">
+                <?php
+                    if (isset($info_Message) && !empty($info_Message)) {
+                        echo $info_Message;
+                    }
+                ?>
+            </div>
+            <div class="error">
+                <?php
+                    if (isset($error_Message) && !empty($error_Message)) {
+                        echo $error_Message;
+                    }
+                ?>
+            </div>
             <div class="row">
-                <div class="error">
-                    <?php
-                        if (isset($error_Message) && !empty($error_Message)) {
-                            echo $error_Message;
-                        }
-                    ?>
-                </div>
                 <div class="9u 12u(mobilep)">
 				    <ul class="actions">
-                        <li><a class="button" href="index.php?action=change_Trip&id=<?php echo $trip['idTrip'];?>">Modifier l'intitulé</a></li>
+                        <?php 
+                            if(isset($registred) && empty($registred))
+                            {
+                                echo "<li><a class='button' href='index.php?action=registration_Trip&id=". $registred_Trip['idTrip']."'>Participer</a></li>";
+                            }
+                        ?>
                         <li><a class="button" href="#">Exporter PDF</a></li>
 				    </ul>
-                </div>
-                <div class="3u 12u(mobilep)" align="right">
-				    <ul class="actions">
-                        <li><a class="button special"  href="index.php?action=delete_Trip&id=<?php echo $trip['idTrip'];?>">Supprimer le voyage</a></li>
-                    </ul>
                 </div>
             </div>
             
             <!-- SUMMARY -->
             <div class="row">
+                <!-- Date start -->
                 <div class="4u 12u(mobilep)">
-                    <!-- Date start -->
                     <h3>Début: <?php
-                                    $date = date_create($trip['Date_Start']);
+                                    $date = date_create($registred_Trip['Date_Start']);
                                     echo date_format($date,"d-m-Y");
                             ?>
                     </h3>
                 </div>
-                <!-- Date End -->
+                <!-- Date End -->                
                 <div class="4u 12u(mobilep)">
                     <h3>Fin: <?php
-                                    $date = date_create($trip['Date_End']);
+                                    $date = date_create($registred_Trip['Date_End']);
                                     echo date_format($date,"d-m-Y");
                             ?>
                 </div>
@@ -69,7 +76,6 @@
                 <div class="6u 6u(mobilep)">
                     <ul class="actions">
                         <li><h3>Hébergements</h3></a></li>
-                        <li><a class="button alt" href="index.php?action=new_Lodging&id=<?php echo $trip['idTrip']; ?>">Ajouter</a></li>
 				    </ul>
                 </div>
             </div>
@@ -89,7 +95,7 @@
                                         //image
                                         if($lodging['Image'] == true)
                                         {
-                                            echo "<td><a class='no_Border' href='images/user".$_SESSION["id"]."/".$trip['idTrip']."/Lodging/".$lodging['idLodging'].".jpg'><img class='thumbnail' src='images/user".$_SESSION["id"]."/".$trip['idTrip']."/Lodging/".$lodging['idLodging'].".jpg'></a></td>";
+                                            echo "<td><a class='no_Border' href='images/user".$registred_Trip['fkUser_Organizer']."/".$registred_Trip['idTrip']."/Lodging/".$lodging['idLodging'].".jpg'><img class='thumbnail' src='images/user".$registred_Trip['fkUser_Organizer']."/".$registred_Trip['idTrip']."/Lodging/".$lodging['idLodging'].".jpg'></a></td>";
                                         }
                                         else
                                         {
@@ -107,7 +113,6 @@
                                         {
                                             echo '<td class="text_Center">'.$lodging['Price'].' CHF<br><a href="'.htmlspecialchars($lodging['Link']).'">lien</a></td>';   
                                         }
-                                        echo "<td><a class='no_Border' href='index.php?action=change_Lodging&id=".$lodging['idLodging']."'><img src='images/edit.png'></a></td><td><a class='no_Border' href='index.php?action=delete_Lodging&id=".$lodging['idLodging']."'><img src='images/delete.png'></a></td>";
                                         echo '</tr>';
                                         echo '<tr>';
                                         echo '<td class="text_Center" colspan="6">Code: '.htmlspecialchars($lodging['Code']).'<br> Remarque: '.htmlspecialchars($lodging['Note']).'</td>';
@@ -121,13 +126,12 @@
             </div>
 		</section>
     
-        <!-- Transports -->
+        <!--Transports-->
         <section class="box" id="transport">
             <div class="row">
                 <div class="6u 6u(mobilep)">
                     <ul class="actions">
                         <li><h3>Transports</h3></a></li>
-                        <li><a class="button alt" href="index.php?action=new_Transport&id=<?php echo $trip['idTrip']; ?>">Ajouter</a></li>
 				    </ul>
                 </div>
             </div>
@@ -166,7 +170,7 @@
                                         //image
                                         if($transport['Image'] == true)
                                         {
-                                            echo "<td><a class='no_Border' href='images/user".$_SESSION["id"]."/".$trip['idTrip']."/Transport/".$transport['idTransport'].".jpg'><img class='thumbnail' src='images/user".$_SESSION["id"]."/".$trip['idTrip']."/Transport/".$transport['idTransport'].".jpg'></a></td>";
+                                            echo "<td><a class='no_Border' href='images/user".$registred_Trip['fkUser_Organizer']."/".$registred_Trip['idTrip']."/Transport/".$transport['idTransport'].".jpg'><img class='thumbnail' src='images/user".$registred_Trip['fkUser_Organizer']."/".$registred_Trip['idTrip']."/Transport/".$transport['idTransport'].".jpg'></a></td>";
                                         }
                                         else
                                         {
@@ -183,7 +187,6 @@
                                         {
                                             echo '<td class="text_Center">'.$transport['Price'].' CHF<br><a href="'.htmlspecialchars($transport['Link']).'">lien</a></td>';   
                                         }
-                                        echo "<td><a class='no_Border' href='index.php?action=change_Transport&id=".$transport['idTransport']."'><img src='images/edit.png'></a></td><td><a class='no_Border' href='index.php?action=delete_Transport&id=".$transport['idTransport']."'><img src='images/delete.png'></a></td>";
                                         echo '</tr>';
                                         echo '<tr>';
                                         echo '<td class="text_Center" colspan="6">Type: '.$transport['Type'].' Code: '.htmlspecialchars($transport['Code']).'<br> Remarque: '.htmlspecialchars($transport['Note']).'</td>';
@@ -204,7 +207,6 @@
                 <div class="6u 6u(mobilep)">
                     <ul class="actions">
                         <li><h3>Activités</h3></a></li>
-                        <li><a class="button alt" href="index.php?action=new_Activity&id=<?php echo $trip['idTrip']; ?>">Ajouter</a></li>
 				    </ul>
                 </div>
             </div>
@@ -223,7 +225,7 @@
                                         //image
                                         if($activity['Image'] == true)
                                         {
-                                            echo "<td><a class='no_Border' href='images/user".$_SESSION["id"]."/".$trip['idTrip']."/Activity/".$activity['idActivity'].".jpg'><img class='thumbnail' src='images/user".$_SESSION["id"]."/".$trip['idTrip']."/Activity/".$activity['idActivity'].".jpg'></a></td>";
+                                            echo "<td><a class='no_Border' href='images/user".$registred_Trip['fkUser_Organizer']."/".$registred_Trip['idTrip']."/Activity/".$activity['idActivity'].".jpg'><img class='thumbnail' src='images/user".$registred_Trip['fkUser_Organizer']."/".$registred_Trip['idTrip']."/Activity/".$activity['idActivity'].".jpg'></a></td>";
                                         }
                                         else
                                         {
@@ -254,7 +256,6 @@
                                                 echo '<td class="text_Center"><a href="'.htmlspecialchars($activity['Link']).'">lien</a><br><br></td>';
                                             }
                                         }
-                                        echo "<td><a class='no_Border' href='index.php?action=change_Activity&id=".$activity['idActivity']."'><img src='images/edit.png'></a></td><td><a class='no_Border' href='index.php?action=delete_Activity&id=".$activity['idActivity']."'><img src='images/delete.png'></a></td>";
                                         echo '</tr>';
                                         echo '<tr>';
                                         echo '<td class="text_Center" colspan="6">Remarque: '.htmlspecialchars($activity['Note']).'</td>';
@@ -274,7 +275,6 @@
                 <div class="6u 6u(mobilep)">
                     <ul class="actions">
                         <li><h3>Prérequis</h3></a></li>
-                        <li><a class="button alt" href="index.php?action=new_Prerequisite&id=<?php echo $trip['idTrip']; ?>">Ajouter</a></li>
 				    </ul>
                 </div>
             </div>
@@ -299,7 +299,6 @@
                                             echo '<td><input type="checkbox" id="'.$prerequisite['idPrerequisite'].'" name="'.$prerequisite['idPrerequisite'].'"onclick="return false;" />
                                             <label for="'.$prerequisite['idPrerequisite'].'"></label></td>'; //Without the label, the input doesn't render
                                         }
-                                        echo "<td><a class='no_Border' href='index.php?action=change_Prerequisite&id=".$prerequisite['idPrerequisite']."'><img src='images/edit.png'></a></td><td><a class='no_Border' href='index.php?action=delete_Prerequisite&id=".$prerequisite['idPrerequisite']."'><img src='images/delete.png'></a></td>";
                                         echo '</tr>';
                                     }
                                 ?>
@@ -316,8 +315,7 @@
             <div class="row">
                 <div class="6u 6u(mobilep)">
                     <ul class="actions">
-                        <li><h3>Participants</h3></a></li>
-                        <!--<li><a class="button alt" href="index.php?action=see_Participant&id=<php echo $trip['idTrip']; ?>">Ajouter</a></li>-->
+                        <li><h3>Participants</h3></li>
 				    </ul>
                 </div>
             </div>
@@ -331,7 +329,7 @@
                                     {   
                                         echo '<tr>';
                                         echo '<td>'.htmlspecialchars($participant['Nickname']).'</td>';
-                                        echo "<td align='right'><a class='no_Border' href='index.php?action=delete_Participant&id=".$_GET['id']."&participant=".$participant['fkUser']."'><img src='images/delete.png'></a></td>";
+                                        echo "<td align='right'></td>";
                                         echo '</tr>';
                                     }
                                 ?>
@@ -341,65 +339,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Privacy change -->
-        <section class="box" id="privacy">
-            <div class="row">
-                <div class="6u 6u(mobilep)">
-                    <ul class="actions">
-                        <li><h3>Visibilité</h3></a></li>
-				    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="12u">
-                    <form method="post" action="index.php?action=change_Trip_Privacy&id=<?php echo $trip['idTrip'];?>">
-                        <div class="row uniform 50%">
-					        <div class="4u 12u(narrower)">
-						        <input type="radio" id="private" name="privacy" onclick="lock_Password()" value="private" <?php
-                                                                                                                                if($trip['Private']){echo 'checked';}
-                                                                                                                            ?>>
-						        <label for="private">Privé</label>
-					        </div>
-					        <div class="4u 12u(narrower)">
-						        <input type="radio" id="public" name="privacy" onclick="unlock_Password()" value="public" <?php
-                                                                                                                                if(!$trip['Private']){echo 'checked';}
-                                                                                                                            ?>>
-						        <label for="public">Public</label>
-					        </div>
-				        </div>
-				        <div class="row uniform 50%">
-					        <div class="6u 12u(mobilep)">
-                            <input type="password" id="password" name="password" placeholder="Mot de passe" maxlength="50" <?php
-                                                                                                                                if($trip['Private']){echo 'disabled';}
-                                                                                                                            ?>/>
-					        </div>
-					        <div class="6u 12u(mobilep)">
-						    <input type="password" id="password_Confirmation" name="password_Confirmation" placeholder="Mot de passe (confirmation)" maxlength="50" <?php
-                                                                                                                                                                        if($trip['Private']){echo 'disabled';}
-                                                                                                                                                                    ?>/>
-					        </div>
-				        </div>
-                        <div class="center error">
-                            <?php
-                                if (isset($error_Message) && !empty($error_Message))
-                                {
-                                    echo $error_Message;
-                                }
-                             ?>
-                        </div>
-				        <div class="row uniform 50%">
-					        <div class="12u" align="center">
-						        <ul class="actions">
-					                <li><input type="submit" value="Enregistrer la visiblitié" /></li>
-						        </ul>
-					        </div>
-				        </div>
-			        </form>            
-                </div>
-            </div>
-        </section>
-
 	</div>
 </div>
                     

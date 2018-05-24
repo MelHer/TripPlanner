@@ -9,13 +9,7 @@ function new_Prerequisite()
     {
         if(isset($_GET['id']) && !empty($_GET['id']))
         {
-            $id_Trip = intval($_GET['id']);
-            $id_Trip = abs($id_Trip);
-            
-            if($id_Trip==0)
-            {
-                $id_Trip=1;
-            }
+            $id_Trip = check_Number($_GET['id']);
             
             //Check if the user created the requested trip id to add a prerequisite
             $trip = get_Trip($_SESSION['id'],$id_Trip);
@@ -76,13 +70,7 @@ function change_Prerequisite()
     {
         if(isset($_GET['id']) && !empty($_GET['id']))
         {
-            $id_Prerequisite = intval($_GET['id']);
-            $id_Prerequisite = abs($id_Prerequisite);
-            
-            if($id_Prerequisite==0)
-            {
-                $id_Prerequisite=1;
-            }
+            $id_Prerequisite = check_Number($_GET['id']);
             
             //Check if the user created the requested lodging.
             $prerequisite = get_Prerequisite($_SESSION['id'],$id_Prerequisite);
@@ -143,13 +131,7 @@ function delete_Prerequisite()
     {
         if(isset($_GET['id']) && !empty($_GET['id']))
         {
-            $id_Prerequisite = intval($_GET['id']);
-            $id_Prerequisite = abs($id_Prerequisite);
-            
-            if($id_Prerequisite==0)
-            {
-                $id_Prerequisite=1;
-            }
+            $id_Prerequisite = check_Number($_GET['id']);
             
             //Check if the user created the requested lodging.
             $prerequisite = get_Prerequisite($_SESSION['id'],$id_Prerequisite);

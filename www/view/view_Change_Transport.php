@@ -57,14 +57,14 @@
                                     //First, set the selected one.
                                     foreach($transport_Types as $transport_Type)
                                     {
-                                        if($transport_Type['idTransport_Type'] == $transport[fkTransport_Type])
+                                        if($transport_Type['idTransport_Type'] == $transport['fkTransport_Type'])
                                         {
                                             echo "<option value='".$transport_Type['idTransport_Type']."'>".$transport_Type['Type']."</option>";   
                                         }
                                     }
                                     foreach($transport_Types as $transport_Type)
                                     {
-                                        if($transport_Type['idTransport_Type'] != $transport[fkTransport_Type])
+                                        if($transport_Type['idTransport_Type'] != $transport['fkTransport_Type'])
                                         {
                                             echo "<option value='".$transport_Type['idTransport_Type']."'>".$transport_Type['Type']."</option>";   
                                         }
@@ -100,7 +100,7 @@
                             //image
                             if($transport['Image'] == true)
                             {
-                                 echo "<td><img class='thumbnail' src='images/user".$_SESSION["id"]."/".$transport['fkTrip']."/Transport/".$transport['idTransport'].".jpg'></td>";
+                                 echo "<td><a class='no_Border' href='images/user".$_SESSION["id"]."/".$transport['fkTrip']."/Transport/".$transport['idTransport'].".jpg'><img class='thumbnail' src='images/user".$_SESSION["id"]."/".$transport['fkTrip']."/Transport/".$transport['idTransport'].".jpg'></a></td>";
                             }
                                  else
                             {

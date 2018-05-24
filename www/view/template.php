@@ -28,7 +28,7 @@
                             <?php if(isset($_SESSION['user'])){ ?>
                             <li><h5 class="head_Text">Bonjour <?php echo htmlspecialchars($_SESSION['nickname']);?></h5></li>
                             <?php } ?>
-							<li><a href="#">Voyages publics</a></li>
+							<li><a href="index.php?action=public_Trip&page=1">Voyages publics</a></li>
 							
 							<!-- Dynamic menu-->
 							<?php if(isset($_SESSION['user'])){ ?>
@@ -77,7 +77,7 @@
 			
 			<script src="assets/js/main.js"></script>
 
-			<script src="assets/js/desc_Trip.js"></script>
+			<script src="assets/js/Trip.js"></script>
 
 	</body>
 </html>

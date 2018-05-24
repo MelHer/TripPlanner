@@ -35,6 +35,10 @@
                             <td><img src="images/edit.png"/></td>
                             <td align="center">Icône par <a href="https://www.flaticon.com/authors/hanan" title="Hanan">Hanan</a> de <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> sous licence <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></td>
                         </tr>
+                        <tr>
+                            <td><img src="images/accept.png"/></td>
+                            <td align="center"><div>Icône par <a href="http://www.freepik.com" title="Freepik">Freepik</a> de <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> sous licence <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

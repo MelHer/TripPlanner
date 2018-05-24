@@ -1,12 +1,15 @@
-.center{
+.center
+{
     text-align:center;
 }
 
-.error{
+.error
+{
     color: red;
 }
 
-.info{
+.info
+{
     color: green;
 }
 

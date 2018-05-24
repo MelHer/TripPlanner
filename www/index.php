@@ -150,6 +150,41 @@ try
             case 'delete_Participant';
                 delete_Participant();
                 break;
+
+            //Displays public trips
+            case 'public_Trip';
+                public_Trip();
+                break;
+
+            //Show trip password form and display trip details if password is correct
+            case 'see_Public_Trip';
+                see_Public_Trip();
+                break;
+
+            //Create a trip registration for a user
+            case 'registration_Trip';
+                registration_Trip();
+                break;
+
+            //Displays all requests
+            case 'see_Request';
+                see_Request();
+                break;
+
+            //Accept a request
+            case 'accept_Request';
+                accept_Request();
+                break;
+
+            //Remove a request
+            case 'delete_Request';
+                delete_Request();
+                break;
+
+            //Change trip visibility
+             case 'change_Trip_Privacy';
+                change_Trip_Privacy();
+                break;
                 
             default :
                 throw new Exception();
@@ -163,6 +198,7 @@ try
 }
 catch (Exception $e)
 {
-   //TODO: Call error page.
-    echo 'Exception reçue : ',  $e->getMessage(), "\n";
+   //Error page
+   //error();
+   echo 'Exception reçue : ',  $e->getMessage(), "\n";
 }

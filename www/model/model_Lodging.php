@@ -72,7 +72,7 @@ function get_Lodging($m_Id_User, $m_Id_Lodging)
     $connection = connect();
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $req = $connection->prepare("SELECT * FROM Lodging INNER JOIN Trip ON Lodging.fkTrip = Trip.idTrip WHERE Trip.fkUser_Organizer = ? AND Lodging.idLodging = ?");
+    $req = $connection->prepare("SELECT Lodging.* FROM Lodging INNER JOIN Trip ON Lodging.fkTrip = Trip.idTrip WHERE Trip.fkUser_Organizer = ? AND Lodging.idLodging = ?");
     $req->bindParam(1,$m_Id_User,PDO::PARAM_INT);
     $req->bindParam(2,$m_Id_Lodging,PDO::PARAM_INT);
     $req->execute();

@@ -44,7 +44,7 @@
                             //image
                             if($trip['Image'] == true)
                             {
-                                 echo "<td><img class='thumbnail' src='images/user".$_SESSION["id"]."/".$trip['idTrip']."/".$trip['idTrip'].".jpg'></td>";
+                                 echo "<td><a class='no_Border' href='images/user".$_SESSION["id"]."/".$trip['idTrip']."/".$trip['idTrip'].".jpg'><img class='thumbnail' src='images/user".$_SESSION["id"]."/".$trip['idTrip']."/".$trip['idTrip'].".jpg'></a></td>";
                             }
                                  else
                             {

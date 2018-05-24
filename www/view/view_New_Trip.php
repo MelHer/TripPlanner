@@ -42,10 +42,10 @@
 				</div>
 				<div class="row uniform 50%">
 					<div class="6u 12u(mobilep)">
-						<input type="password" id="password" name="password" placeholder="Mot de passe" disabled/>
+						<input type="password" id="password" name="password" placeholder="Mot de passe" maxlength="50" disabled/>
 					</div>
 					<div class="6u 12u(mobilep)">
-						<input type="password" id="password_Confirmation" name="password_Confirmation" placeholder="Mot de passe (confirmation)" disabled/>
+						<input type="password" id="password_Confirmation" name="password_Confirmation" placeholder="Mot de passe (confirmation)" maxlength="50" disabled/>
 					</div>
 				</div>
 				<div class="row uniform 50%">
@@ -65,7 +65,8 @@
 				<div class="row uniform 50%">
 					<div class="12u" align="center">
 						<ul class="actions">
-					        <li><input type="submit" value="Créer" /></li>		
+					        <li><input type="submit" value="Créer" /></li>
+							<li><a class="button" href="index.php?action=my_Trip&page=1">Annuler</a></li>			
 						</ul>
 					</div>
 				</div>

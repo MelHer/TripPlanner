@@ -78,7 +78,7 @@ function get_Transport($m_Id_User, $m_Id_Transport)
     $connection = connect();
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $req = $connection->prepare("SELECT * FROM Transport INNER JOIN Trip ON Transport.fkTrip = Trip.idTrip WHERE Trip.fkUser_Organizer = ? AND Transport.idTransport = ?");
+    $req = $connection->prepare("SELECT Transport.* FROM Transport INNER JOIN Trip ON Transport.fkTrip = Trip.idTrip WHERE Trip.fkUser_Organizer = ? AND Transport.idTransport = ?");
     $req->bindParam(1,$m_Id_User,PDO::PARAM_INT);
     $req->bindParam(2,$m_Id_Transport,PDO::PARAM_INT);
     $req->execute();

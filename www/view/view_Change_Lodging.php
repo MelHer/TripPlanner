@@ -81,7 +81,7 @@
                             //image
                             if($lodging['Image'] == true)
                             {
-                                 echo "<td><img class='thumbnail' src='images/user".$_SESSION["id"]."/".$lodging['fkTrip']."/Lodging/".$lodging['idLodging'].".jpg'></td>";
+                                 echo "<td><a class='no_Border' href='images/user".$_SESSION["id"]."/".$lodging['fkTrip']."/Lodging/".$lodging['idLodging'].".jpg'><img class='thumbnail' src='images/user".$_SESSION["id"]."/".$lodging['fkTrip']."/Lodging/".$lodging['idLodging'].".jpg'></a></td>";
                             }
                                  else
                             {

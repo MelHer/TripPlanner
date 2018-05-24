@@ -1,0 +1,2 @@
+ErrorDocument 404 "http://tripplanner.mycpnv.ch/index.php?action=error"
+ErrorDocument 500 "http://tripplanner.mycpnv.ch/index.php?action=error"

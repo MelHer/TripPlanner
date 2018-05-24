@@ -9,13 +9,7 @@ function new_Transport()
     {
         if(isset($_GET['id']) && !empty($_GET['id']))
         {
-            $id_Trip = intval($_GET['id']);
-            $id_Trip = abs($id_Trip);
-            
-            if($id_Trip==0)
-            {
-                $id_Trip=1;
-            }
+            $id_Trip = check_Number($_GET['id']);
             
             //Check if the user created the requested trip id to add a transport.
             $trip = get_Trip($_SESSION['id'],$id_Trip);
@@ -109,13 +103,7 @@ function change_Transport()
     {
         if(isset($_GET['id']) && !empty($_GET['id']))
         {
-            $id_Transport = intval($_GET['id']);
-            $id_Transport = abs($id_Transport);
-            
-            if($id_Transport==0)
-            {
-                $id_Transport=1;
-            }
+            $id_Transport = check_Number($_GET['id']);
             
             //Check if the user created the requested transport.
             $transport = get_Transport($_SESSION['id'],$id_Transport);
@@ -211,13 +199,7 @@ function delete_Transport()
     {
         if(isset($_GET['id']) && !empty($_GET['id']))
         {
-            $id_Transport = intval($_GET['id']);
-            $id_Transport = abs($id_Transport);
-            
-            if($id_Transport==0)
-            {
-                $id_Transport=1;
-            }
+            $id_Transport = check_Number($_GET['id']);
             
             //Check if the user created the requested lodging.
             $transport = get_Transport($_SESSION['id'],$id_Transport);

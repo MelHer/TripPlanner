@@ -14,12 +14,17 @@ function get_User_Trip($m_User_Id,$m_Index)
     //changing offset whith page num
     if($m_Index!=1)
     {
-        $m_Index = ($m_Index-1)*5-1;
+        $m_Index = ($m_Index-1)*5;
+    }
+    else
+    {
+        $m_Index = 0;
     }
     
-    $req = $connection->prepare("SELECT * FROM `trip` WHERE fkUser_Organizer = ? ORDER BY Creation DESC LIMIT ?,5");
-    $req->bindParam(1,$m_User_Id,PDO::PARAM_STR);
-    $req->bindParam(2,$m_Index,PDO::PARAM_INT);
+    $req = $connection->prepare("SELECT DISTINCT idTrip, Title, Destination, Date_Start, Date_End, Creation, Image FROM Trip LEFT JOIN Participant ON Trip.idTrip = Participant.fkTrip WHERE fkUser_Organizer = ? OR (fkUser = ? AND Waiting = false) ORDER BY Creation DESC LIMIT ?,5");
+    $req->bindParam(1,$m_User_Id,PDO::PARAM_INT);
+    $req->bindParam(2,$m_User_Id,PDO::PARAM_STR);
+    $req->bindParam(3,$m_Index,PDO::PARAM_INT);
     $req->execute();
 
     $trips = $req->fetchAll();
@@ -172,7 +177,7 @@ function get_Lodging_From_Trip($m_Id_Trip)
     $connection = connect();
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $req = $connection->prepare("SELECT idLodging, Type, Address,Day_Start, Day_End, Price, Code, Link, Note, Image FROM lodging INNER JOIN lodging_Type ON lodging.fkLodging_Type = lodging_Type.idLodging_Type WHERE fkTrip = ? ORDER BY Day_Start ASC");
+    $req = $connection->prepare("SELECT idLodging, Type, Address,Day_Start, Day_End, Price, Code, Link, Note, Image FROM Lodging INNER JOIN Lodging_Type ON Lodging.fkLodging_Type = Lodging_Type.idLodging_Type WHERE fkTrip = ? ORDER BY Day_Start ASC");
     $req->bindParam(1,$m_Id_Trip,PDO::PARAM_INT);
     $req->execute();
     
@@ -191,7 +196,7 @@ function get_Transport_From_Trip($m_Id_Trip)
     $connection = connect();
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $req = $connection->prepare("SELECT idTransport, Type, Place_Start, Place_End, Day_Start, Day_End, Time_Start, Time_End, Price, Link, Code, Note, Image FROM transport INNER JOIN Transport_Type ON Transport.fkTransport_Type = Transport_Type.idTransport_Type WHERE fkTrip = ? ORDER BY Day_Start ASC");
+    $req = $connection->prepare("SELECT idTransport, Type, Place_Start, Place_End, Day_Start, Day_End, Time_Start, Time_End, Price, Link, Code, Note, Image FROM Transport INNER JOIN Transport_Type ON Transport.fkTransport_Type = Transport_Type.idTransport_Type WHERE fkTrip = ? ORDER BY Day_Start ASC");
     $req->bindParam(1,$m_Id_Trip,PDO::PARAM_INT);
     $req->execute();
     
@@ -257,4 +262,50 @@ function get_Participants_From_Trip($m_Id_Trip)
     return $participants;
 }
 
+/**
+ * @brief Get 5 public trip. 
+ * @param $m_Index Offset.
+ * @return Returns 5 public trips from the offset, ordered by creation date.
+ */
+function get_Public_Trip($m_Index) 
+{
+    $connection = connect();
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    //changing offset whith page num
+    if($m_Index!=1)
+    {
+        $m_Index = ($m_Index-1)*5;
+    }
+    else
+    {
+        $m_Index = 0;
+    }
+    
+    $req = $connection->prepare("SELECT fkUser_Organizer,Nickname,Title,Destination,Date_Start,Date_End,Creation,Image,idTrip FROM Trip INNER JOIN User ON Trip.fkUser_Organizer = User.idUser WHERE Private = false ORDER BY Creation DESC LIMIT ?,5");
+    $req->bindParam(1,$m_Index,PDO::PARAM_INT);
+    $req->execute();
+
+    $trips = $req->fetchAll();
+    
+    return $trips;
+}
+
+/**
+ * @brief Get a public trip infos. 
+ * @param $m_Id_Trip Id of the trip to get infos.
+ * @return Returns the trip infos in an array.
+ */
+function get_Public_Trip_Info($m_Id_Trip)
+{
+    $connection = connect();
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $req = $connection->prepare("SELECT * FROM Trip WHERE idTrip = ? AND Private = false");
+    $req->bindParam(1,$m_Id_Trip,PDO::PARAM_INT);
+    $req->execute();
+    
+    $result = $req->fetch(PDO::FETCH_ASSOC);
+    
+    return $result;
+}

@@ -9,13 +9,7 @@ function delete_Participant()
     {
         if(isset($_GET['id']) && !empty($_GET['id']))
         {
-            $id_Trip = intval($_GET['id']);
-            $id_Trip = abs($id_Trip);
-            
-            if($id_Trip==0)
-            {
-                $id_Trip=1;
-            }
+            $id_Trip = check_Number($_GET['id']);
             
             //Check if the user created the requested trip id to delete a participant
             $trip = get_Trip($_SESSION['id'],$id_Trip);
@@ -57,7 +51,94 @@ function delete_Participant()
     }
 }
 
+/*
+ * @brief Display all the request to join user's trips.
+ */
+function see_Request()
+{
+    if(isset($_SESSION['user']) && !empty($_SESSION['user']))
+    {
+        $requests = get_Request($_SESSION['id']);
+        require "view/view_Request.php";
+    }
+    else
+    {
+        header('Location: index.php?action=login');
+    }
+}
 
+/*
+ * @brief Accept a request. User who made it become participant to the trip.
+ */
+function accept_Request()
+{
+    if(isset($_SESSION['user']) && !empty($_SESSION['user']))
+    {
+        $id_Trip = check_Number($_GET['trip']);
+
+        //Check if the user created the requested trip id.
+        $trip = get_Trip($_SESSION['id'],$id_Trip);
+        if(isset($trip) && !empty($trip))
+        {
+            $id_User = intval($_GET['user']);
+            $id_User = abs($id_User);
+            
+            if($id_User==0)
+            {
+                $id_User=1;
+            }
+
+            update_Request($id_Trip,$id_User);
+
+            $requests = get_Request($_SESSION['id']);
+            $info_Message = "Utilisateur accepté avec succès";
+            require "view/view_Request.php";
+
+        }
+        else
+        {
+            $error_Message = "Ce voyage ne vous appartient pas";
+            require "view/view_Request.php";
+        }
+    }
+    else
+    {
+        header('Location: index.php?action=login');
+    }
+}
+
+/*
+ * @brief Remove a request. Delete the record in the database
+ */
+function delete_Request()
+{
+    if(isset($_SESSION['user']) && !empty($_SESSION['user']))
+    {
+        $id_Trip = check_Number($_GET['trip']);
+
+        //Check if the user created the requested trip id.
+        $trip = get_Trip($_SESSION['id'],$id_Trip);
+        if(isset($trip) && !empty($trip))
+        {
+            $id_User = check_Number($_GET['user']);
+
+            remove_Participant($_GET['trip'],$_GET['user']);
+
+            $requests = get_Request($_SESSION['id']);
+            $info_Message = "Utilisateur refusé avec succès";
+            require "view/view_Request.php";
+        }
+        else
+        {
+            $error_Message = "Ce voyage ne vous appartient pas";
+            require "view/view_Request.php";
+        }
+    }
+    else
+    {
+        header('Location: index.php?action=login');
+    }
+}
 
 
 

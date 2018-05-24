@@ -27,7 +27,7 @@
                             <?php if(isset($_SESSION['user'])){ ?>
                             <li><h5 class="head_Text">Bonjour <?php echo htmlspecialchars($_SESSION['nickname']);?></h5></li>
                             <?php } ?>
-							<li><a href="#">Voyages publics</a></li>
+							<li><a href="index.php?action=public_Trip&page=1">Voyages publics</a></li>
 							
 							<!-- Dynamic menu-->
 							<?php if(isset($_SESSION['user'])){ ?>
@@ -54,7 +54,7 @@
 					<h2>Trip Planner</h2>
 					<p>Planificateur de voyage</p>
 					<ul class="actions">
-                        <li><a href="#" class="button">Voyages publics</a></li>
+                        <li><a href="index.php?action=public_Trip&page=1" class="button">Voyages publics</a></li>
 						<?php if(isset($_SESSION['user'])){ ?>
 							<li><a href="index.php?action=my_Trip&page=1" class="button">Mes voyages</a></li>
 							<li><a href="index.php?action=logout" class="button">Déconnexion</a></li>
