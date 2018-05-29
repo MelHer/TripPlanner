@@ -140,5 +140,47 @@ function delete_Request()
     }
 }
 
+/*
+ * @brief Cancel a processing request or remove a participant on his demand.
+ */
+function cancel_Participation()
+{
+    if(isset($_SESSION['user']) && !empty($_SESSION['user']))
+    {
+        $id_Trip = check_Number($_GET['trip']);
+        
+        $registred = get_Registration($id_Trip,$_SESSION['id']); //getting registration info, is it accepted or processing
+        
+        if(!isset($registrer) && !empty($registred))
+        {
+            remove_Self($_SESSION['id'], $registred['fkTrip']);
+            
+            
+            $info_Message = "Vous ne participez plus au voyage";
+            
+            //Getting public trip infos
+            $participant_Trip = get_Public_Trip_Info($id_Trip);
+            $lodgings = get_Lodging_From_Trip($id_Trip);
+            $transports = get_Transport_From_Trip($id_Trip);
+            $activities = get_Activity_From_Trip($id_Trip);
+            $prerequisites = get_Prerequisite_From_Trip($id_Trip);
+            $participants = get_Participants_From_Trip($id_Trip);
+
+            //If not set the user wont be able to register for trip
+            $_SESSION['public'] = $registred['fkTrip'];
+
+            $registred = get_Registration($participant_Trip['idTrip'],$_SESSION['id']); //update the registration control on top of the trip.
+            require "view/view_Detailed_Public_Trip.php";
+        }
+        else
+        {
+            require "view/view_Home.php";
+        }
+    }
+    else
+    {
+        header('Location: index.php?action=login');
+    }
+}
 
 

@@ -15,6 +15,13 @@
                     <li><a class="button" href="index.php?action=see_Request">Demandes</a></li>
 				</ul>
             </div>
+            <div class="center info">
+                <?php
+                    if (isset($info_Message) && !empty($info_Message)) {
+                        echo $info_Message;
+                    }
+                ?>
+            </div>
             <div class="table-wrapper">
 				<table id="simple_Table">
 				    <tbody>
@@ -31,7 +38,7 @@
                                 //image
                                 if($trip['Image'] == true)
                                 {
-                                    echo "<td><a class='no_Border' href='images/user".$_SESSION["id"]."/".$trip['idTrip']."/".$trip['idTrip'].".jpg'><img class='thumbnail' src='images/user".$_SESSION["id"]."/".$trip['idTrip']."/".$trip['idTrip'].".jpg'></a></td>";
+                                    echo "<td><a class='no_Border' href='images/user".$trip['fkUser_Organizer']."/".$trip['idTrip']."/".$trip['idTrip'].".jpg'><img class='thumbnail' src='images/user".$trip["fkUser_Organizer"]."/".$trip['idTrip']."/".$trip['idTrip'].".jpg'></a></td>";
                                 }
                                 else
                                 {

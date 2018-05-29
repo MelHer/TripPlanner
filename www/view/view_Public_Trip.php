@@ -9,6 +9,13 @@
     <div class="12u">
         
         <section class="box">
+            <div class="center info">
+                <?php
+                    if (isset($info_Message) && !empty($info_Message)) {
+                        echo $info_Message;
+                    }
+                ?>
+            </div>
             <div class="table-wrapper">
 				<table id="simple_Table">
 				    <tbody>

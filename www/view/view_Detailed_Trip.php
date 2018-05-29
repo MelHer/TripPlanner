@@ -5,7 +5,7 @@
 	<h2><?php echo htmlspecialchars($trip['Title']);?></h2>
 	<p><?php echo htmlspecialchars($trip['Destination']);?></p>
 </header>
-<div class="row">
+<div class="row" id="pdf">
     <div class="12u">
         <!-- Text -->
         <section class="box">
@@ -22,7 +22,7 @@
                 <div class="9u 12u(mobilep)">
 				    <ul class="actions">
                         <li><a class="button" href="index.php?action=change_Trip&id=<?php echo $trip['idTrip'];?>">Modifier l'intitulé</a></li>
-                        <li><a class="button" href="#">Exporter PDF</a></li>
+                        <li><input type="button" value="Exporter PDF" onclick="make_PDF()"></li>
 				    </ul>
                 </div>
                 <div class="3u 12u(mobilep)" align="right">
@@ -380,11 +380,25 @@
                                                                                                                                                                     ?>/>
 					        </div>
 				        </div>
+                        <div class="center info">
+                            <?php
+                                if (isset($_GET['result']) && !empty($_GET['result']))
+                                {
+                                    if($_GET['result']=="ok/")
+                                    {
+                                        echo "Modifications effectuées avec succès";    
+                                    }
+                                }
+                             ?>
+                        </div>
                         <div class="center error">
                             <?php
-                                if (isset($error_Message) && !empty($error_Message))
+                                if (isset($_GET['result']) && !empty($_GET['result']))
                                 {
-                                    echo $error_Message;
+                                    if($_GET['result']=="error/")
+                                    {
+                                        echo "Les mots de passe doivent être identiques et faire minimum 6 caractères et maximum 50";    
+                                    }
                                 }
                              ?>
                         </div>

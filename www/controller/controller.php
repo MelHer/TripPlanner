@@ -252,3 +252,43 @@ function check_Number($m_Number)
 
     return $number;
 }
+
+/**
+ * @brief Check if the uploaded image is allowed.
+ * @param $m_Extension Extension of the uploaded file.
+ * @param $m_Error The error state of the uploaded file.
+ * @param $m_Size The size of the uploaded file.
+ * @return Returns a message: empty if OK else an error message.
+ */
+function check_Image($m_Extension,$m_Error,$m_Size)
+{
+    $checking = "";
+    
+    $allowed = array('jpg','jpeg','png');
+               
+    if(in_array($m_Extension,$allowed))
+    {
+        if($m_Error === 0)
+        {        
+            if($m_Size < 1000000)
+            {
+               return $checking;       
+            }
+            else
+            {
+                $checking = "Votre image est trop lourde ( >1mb )";
+                return $checking; 
+            }
+        }
+        else
+        {   
+            $checking = "Erreur de chargement du fichier";
+            return $checking;
+        }
+    }
+    else
+    {
+        $checking = "Images .png .jpg ou .jpeg acceptées";
+        return $checking; 
+    }
+}

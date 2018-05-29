@@ -2,13 +2,11 @@
     ob_start();
 ?>
 <header>
-	<h2><?php echo htmlspecialchars($registred_Trip['Title']);?></h2>
-	<p><?php echo htmlspecialchars($registred_Trip['Destination']);?></p>
+	<h2><?php echo htmlspecialchars($participant_Trip['Title']);?></h2>
+	<p><?php echo htmlspecialchars($participant_Trip['Destination']);?></p>
 </header>
-<div class="row">
-    <div class="12u"
-    >
-        
+<div class="row" id="pdf">
+    <div class="12u">
         <section class="box">
             <!-- Controls-->
             <div class="info">
@@ -31,10 +29,18 @@
                         <?php 
                             if(isset($registred) && empty($registred))
                             {
-                                echo "<li><a class='button' href='index.php?action=registration_Trip&id=". $registred_Trip['idTrip']."'>Participer</a></li>";
+                                echo "<li><a class='button' href='index.php?action=registration_Trip&id=". $participant_Trip['idTrip']."'>Participer</a></li>";
+                            }
+                            else if(isset($registred) && $registred['Waiting'] == true)
+                            {
+                                echo "<li><a class='button' href='index.php?action=cancel_Participation&trip=". $participant_Trip['idTrip']."'>Annuler demande</a></li>";
+                            }
+                            else if(isset($registred) && $registred['Waiting'] == false)
+                            {
+                                echo "<li><a class='button' href='index.php?action=cancel_Participation&trip=". $participant_Trip['idTrip']."'>Ne plus participer</a></li>";
                             }
                         ?>
-                        <li><a class="button" href="#">Exporter PDF</a></li>
+                        <li><input type="button" value="Exporter PDF" onclick="make_PDF()"></li>
 				    </ul>
                 </div>
             </div>
@@ -44,7 +50,7 @@
                 <!-- Date start -->
                 <div class="4u 12u(mobilep)">
                     <h3>Début: <?php
-                                    $date = date_create($registred_Trip['Date_Start']);
+                                    $date = date_create($participant_Trip['Date_Start']);
                                     echo date_format($date,"d-m-Y");
                             ?>
                     </h3>
@@ -52,7 +58,7 @@
                 <!-- Date End -->                
                 <div class="4u 12u(mobilep)">
                     <h3>Fin: <?php
-                                    $date = date_create($registred_Trip['Date_End']);
+                                    $date = date_create($participant_Trip['Date_End']);
                                     echo date_format($date,"d-m-Y");
                             ?>
                 </div>
@@ -95,7 +101,7 @@
                                         //image
                                         if($lodging['Image'] == true)
                                         {
-                                            echo "<td><a class='no_Border' href='images/user".$registred_Trip['fkUser_Organizer']."/".$registred_Trip['idTrip']."/Lodging/".$lodging['idLodging'].".jpg'><img class='thumbnail' src='images/user".$registred_Trip['fkUser_Organizer']."/".$registred_Trip['idTrip']."/Lodging/".$lodging['idLodging'].".jpg'></a></td>";
+                                            echo "<td><a class='no_Border' href='images/user".$participant_Trip['fkUser_Organizer']."/".$participant_Trip['idTrip']."/Lodging/".$lodging['idLodging'].".jpg'><img class='thumbnail' src='images/user".$participant_Trip['fkUser_Organizer']."/".$participant_Trip['idTrip']."/Lodging/".$lodging['idLodging'].".jpg'></a></td>";
                                         }
                                         else
                                         {
@@ -170,7 +176,7 @@
                                         //image
                                         if($transport['Image'] == true)
                                         {
-                                            echo "<td><a class='no_Border' href='images/user".$registred_Trip['fkUser_Organizer']."/".$registred_Trip['idTrip']."/Transport/".$transport['idTransport'].".jpg'><img class='thumbnail' src='images/user".$registred_Trip['fkUser_Organizer']."/".$registred_Trip['idTrip']."/Transport/".$transport['idTransport'].".jpg'></a></td>";
+                                            echo "<td><a class='no_Border' href='images/user".$participant_Trip['fkUser_Organizer']."/".$participant_Trip['idTrip']."/Transport/".$transport['idTransport'].".jpg'><img class='thumbnail' src='images/user".$participant_Trip['fkUser_Organizer']."/".$participant_Trip['idTrip']."/Transport/".$transport['idTransport'].".jpg'></a></td>";
                                         }
                                         else
                                         {
@@ -225,7 +231,7 @@
                                         //image
                                         if($activity['Image'] == true)
                                         {
-                                            echo "<td><a class='no_Border' href='images/user".$registred_Trip['fkUser_Organizer']."/".$registred_Trip['idTrip']."/Activity/".$activity['idActivity'].".jpg'><img class='thumbnail' src='images/user".$registred_Trip['fkUser_Organizer']."/".$registred_Trip['idTrip']."/Activity/".$activity['idActivity'].".jpg'></a></td>";
+                                            echo "<td><a class='no_Border' href='images/user".$participant_Trip['fkUser_Organizer']."/".$participant_Trip['idTrip']."/Activity/".$activity['idActivity'].".jpg'><img class='thumbnail' src='images/user".$participant_Trip['fkUser_Organizer']."/".$participant_Trip['idTrip']."/Activity/".$activity['idActivity'].".jpg'></a></td>";
                                         }
                                         else
                                         {

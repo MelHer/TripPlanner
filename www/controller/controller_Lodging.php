@@ -42,7 +42,7 @@ function new_Lodging()
                             $checking = check_Image($file_Actual_Ext, $file_Error, $file_Size);
                             if($checking == "")
                             {
-                                $file_Tmp_New_Name = $_SESSION['id'].'.jpg';
+                                $file_Tmp_New_Name = 'img'.$_SESSION['id'].'.jpg';
                                 $image = true;
                             }
                             else

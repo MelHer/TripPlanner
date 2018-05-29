@@ -12,6 +12,11 @@ function my_Trip()
             $page_Num = check_Number($_GET['page']);
             
             $trips = get_User_Trip($_SESSION['id'],$page_Num);
+            
+            if(empty($trips))
+            {
+                $info_Message = "Il n'y a plus de voyage à montrer.";
+            }
 
             require "view/view_My_Trip.php";
         }
@@ -59,7 +64,7 @@ function new_Trip()
                     $checking = check_Image($file_Actual_Ext, $file_Error, $file_Size);
                     if($checking == "")
                     {
-                        $file_Tmp_New_Name = $_SESSION['id'].'.'.$file_Actual_Ext;
+                        $file_Tmp_New_Name = 'img'.$_SESSION['id'].'.'.$file_Actual_Ext;
                         $image = true;
                     }
                     else
@@ -161,8 +166,8 @@ function see_Trip()
             //Check if the user creater the requested trip id.
             $trip = get_Trip($_SESSION['id'],$id_Trip);
             //If he is a participant
-            $registred_Trip = accepted_Registration($_SESSION['id'],$id_Trip);
-            if((isset($trip) && !empty($trip)) ||  (isset($registred_Trip) && !empty($registred_Trip)))
+            $participant_Trip = accepted_Registration($_SESSION['id'],$id_Trip);
+            if((isset($trip) && !empty($trip)) ||  (isset($participant_Trip) && !empty($participant_Trip)))
             {
 
                 $lodgings = get_Lodging_From_Trip($id_Trip);
@@ -176,8 +181,9 @@ function see_Trip()
                     require "view/view_Detailed_Trip.php";  
                 }
                 
-                if($registred_Trip)
+                if($participant_Trip)
                 {
+                    $registred = get_Registration($participant_Trip['idTrip'],$_SESSION['id']); //if already in registration doesn't display "Registration button"
                     require "view/view_Detailed_Public_Trip.php";
                 }
             }
@@ -370,46 +376,6 @@ function check_Trip_Data($m_Datas)
 }
 
 /**
- * @brief Check if the uploaded image is allowed.
- * @param $m_Extension Extension of the uploaded file.
- * @param $m_Error The error state of the uploaded file.
- * @param $m_Size The size of the uploaded file.
- * @return Returns a message: empty if OK else an error message.
- */
-function check_Image($m_Extension,$m_Error,$m_Size)
-{
-    $checking = "";
-    
-    $allowed = array('jpg','jpeg','png');
-               
-    if(in_array($m_Extension,$allowed))
-    {
-        if($m_Error === 0)
-        {        
-            if($m_Size < 1000000)
-            {
-               return $checking;       
-            }
-            else
-            {
-                $checking = "Votre image est trop lourde ( >1mb )";
-                return $checking; 
-            }
-        }
-        else
-        {   
-            $checking = "Erreur de chargement du fichier";
-            return $checking;
-        }
-    }
-    else
-    {
-        $checking = "Images .png .jpg ou .jpeg acceptées";
-        return $checking; 
-    }
-}
-
-/**
  * @brief Displays the public trips
  */
 function public_Trip()
@@ -419,6 +385,11 @@ function public_Trip()
         $page_Num = check_Number($_GET['page']);
             
         $trips = get_Public_Trip($page_Num);
+        
+        if(empty($trips))
+        {
+            $info_Message = "Il n'y a plus de voyage à montrer.";
+        }
 
         require "view/view_Public_Trip.php";
     }
@@ -443,11 +414,11 @@ function see_Public_Trip()
                 $id_Trip = check_Number($_GET['id']);
 
                 //Getting trip infos
-                $trip = get_Public_Trip_Info($id_Trip);
-                if(isset($trip) && !empty($trip))
+                $participant_Trip = get_Public_Trip_Info($id_Trip);
+                if(isset($participant_Trip) && !empty($participant_Trip))
                 {
                     //Password check
-                    if(password_verify($_POST['password'],$trip['Password']))
+                    if(password_verify($_POST['password'],$participant_Trip['Password']))
                     {
 
                         $lodgings = get_Lodging_From_Trip($id_Trip);
@@ -457,9 +428,9 @@ function see_Public_Trip()
                         $participants = get_Participants_From_Trip($id_Trip);
 
                         //If not set the user wont be able to register for trip
-                        $_SESSION['public'] = $trip['idTrip'];
+                        $_SESSION['public'] = $participant_Trip['idTrip'];
 
-                        $registred = get_Registration($trip['idTrip'],$_SESSION['id']); //if already in registration doesn't display "Registration button"
+                        $registred = get_Registration($participant_Trip['idTrip'],$_SESSION['id']); //if already in registration doesn't display "Registration button"
                         require "view/view_Detailed_Public_Trip.php";
                     }
                     else
@@ -502,11 +473,11 @@ function registration_Trip()
             $id_Trip = check_Number($_GET['id']);
 
             //Getting trip infos
-            $trip = get_Public_Trip_Info($id_Trip);
-            if($_SESSION['id'] != $trip['fkUser_Organizer'])
+            $participant_Trip = get_Public_Trip_Info($id_Trip);
+            if($_SESSION['id'] != $participant_Trip['fkUser_Organizer'])
             {
                 //has the user connected to the trip to register ? 
-                if(isset($_SESSION['public']) && $_SESSION['public'] == $trip['idTrip'])
+                if(isset($_SESSION['public']) && $_SESSION['public'] == $participant_Trip['idTrip'])
                 {
                     $lodgings = get_Lodging_From_Trip($id_Trip);
                     $transports = get_Transport_From_Trip($id_Trip);
@@ -515,13 +486,13 @@ function registration_Trip()
                     $participants = get_Participants_From_Trip($id_Trip);
 
                     //checking if not already registred
-                    $registred = get_Registration($trip['idTrip'],$_SESSION['id']);
+                    $registred = get_Registration($participant_Trip['idTrip'],$_SESSION['id']);
                     if(isset($registred) && empty($registred))
                     {
                         //Creating participation in database
-                        create_Registration($trip['idTrip'],$_SESSION['id']);
+                        create_Registration($participant_Trip['idTrip'],$_SESSION['id']);
                         $info_Message = "Votre demande a été envoyée.";
-                        $registred = get_Registration($trip['idTrip'],$_SESSION['id']);//Update to don't display "Registration button"
+                        $registred = get_Registration($participant_Trip['idTrip'],$_SESSION['id']);//Update to don't display "Registration button"
                         require "view/view_Detailed_Public_Trip.php";
                     }
                     else
@@ -592,7 +563,8 @@ function  change_Trip_Privacy()
 
                     if($_POST['privacy'] == 'private')
                     {
-                        //Update request
+                        change_Privacy_Private($trip['idTrip']);
+                        header('Location: index.php?action=see_Trip&id='.$trip['idTrip'].'&result=ok/#privacy');
                     } 
                     else
                     {
@@ -600,19 +572,19 @@ function  change_Trip_Privacy()
                         {
                             if($_POST['password'] == $_POST['password_Confirmation'])
                             {
-                                $password = $_POST['password'];
-                                //update request
+                                $hash = password_hash($_POST['password'],PASSWORD_DEFAULT);
+                                change_Privacy_Public($trip['idTrip'],$hash);
+                                
+                                header('Location: index.php?action=see_Trip&id='.$trip['idTrip'].'&result=ok/#privacy');
                             }
                             else
                             {
-                                $error_Message = "Les mots de passent ne sont pas identiques";
-                                require "view/view_see_Trip.php"; 
+                                header('Location: index.php?action=see_Trip&id='.$trip['idTrip'].'&result=error/#privacy');
                             }
                         }
                         else
                         {
-                            $error_Message = "Les mots doivent faire entre 6 et .";
-                            require "view/view_See_Trip.php"; 
+                            header('Location: index.php?action=see_Trip&id='.$trip['idTrip'].'&result=error/#privacy');
                         }
                     }
                 }

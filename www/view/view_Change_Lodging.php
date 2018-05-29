@@ -3,7 +3,7 @@
 ?>
 <header>
 	<h2>Editer l'hébergement</h2>
-	<p>Les champs marqués d'un * sont facultatifs</p>
+	<p>Les champs marqués d'un * sont obligatoires</p>
 </header>
 <div class="row">
     <div class="12u">
@@ -12,22 +12,22 @@
 			<form method="post" action="index.php?action=change_Lodging&id=<?php echo $_GET['id'];?>" enctype="multipart/form-data">
 				<div class="row uniform 50%">
 					<div class="12u 12u(mobilep)">
-						<input type="text" name="address" value="<?php echo htmlspecialchars($lodging['Address']);?>" placeholder="Adresse" maxlength="45" required/>
+						<input type="text" name="address" value="<?php echo htmlspecialchars($lodging['Address']);?>" placeholder="Adresse*" maxlength="45" required/>
 					</div>
 				</div>
                 <div class="row uniform 50%">
 					<div class="6u 12u(mobilep)">
-						<label for="date_Start">Date de début:</label>
+						<label for="date_Start">Date de début*:</label>
 						<input type="date" id="start" name="date_Start" value="<?php echo $lodging['Day_Start'];?>" onchange="set_Min_Date()" min="2018-01-01" required/>
 					</div>
 					<div class="6u 12u(mobilep)">
-						<label for="date_End">Date de fin:</label>
+						<label for="date_End">Date de fin*:</label>
 						<input type="date" id="end"  name="date_End" value="<?php echo $lodging['Day_End'];?>" onchange="set_Min_Date()" required/>
 					</div>
 				</div>
                 <div class="row uniform 50%">
                     <div class="6u 12u(mobilep)">
-                        <div>Prix:</div>
+                        <div>Prix*:</div>
 						<input type="number" id="price" onchange="two_Decimal()" name="price" value="<?php echo $lodging['Price'];?>" min="0" step="0.01" required/>
                         <span>CHF</span>
                     </div>
@@ -71,7 +71,7 @@
 				<div class="row uniform 50%">
 					<div class="6u 12u(mobilep)">
 						<input type="file" name="image"/>
-						<label for="image">Image du voyage*</label>
+						<label for="image">Image du voyage</label>
 					</div>
                     <div class="2u 12u(mobilep)">
 				        <span>Image actuelle:</span>

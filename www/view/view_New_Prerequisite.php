@@ -3,7 +3,7 @@
 ?>
 <header>
 	<h2>Nouveau prérequis</h2>
-	<p>Les champs marqués d'un * sont facultatifs</p>
+	<p>Les champs marqués d'un * sont obligatoires</p>
 </header>
 <div class="row">
     <div class="12u">
@@ -12,10 +12,10 @@
 			<form method="post" action="index.php?action=new_Prerequisite&id=<?php echo $_GET['id'];?>">
 				<div class="row uniform 50%">
 					<div class="6u 12u(mobilep)">
-						<input type="text" name="name" placeholder="Description" maxlength="45" required/>
+						<input type="text" name="name" placeholder="Description*" maxlength="45" required/>
 					</div>
 					<div class="6u 12u(mobilep)">
-						<div>Quantité</div>
+						<div>Quantité*</div>
 						<input type="number" id="quantity" onchange="no_Decimal()" name="quantity" value="0" min="0" max"9999" step="1" required/>
                     </div>
 				</div>

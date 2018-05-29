@@ -3,19 +3,19 @@ session_start();
 
 date_default_timezone_set('Europe/Zurich');
 
-//About users/home/login
+//About users/home/login and general function like picture validation, error display.
 require  'controller/controller.php';
-//About trips displaying/editing/creating/deleting
+//About trips displaying/editing/creating/deleting.
 require 'controller/controller_Trip.php';
-//About lodging displaying/editing/creating/deleting
+//About lodging displaying/editing/creating/deleting.
 require 'controller/controller_Lodging.php';
-//About transport displaying/editing/creating/deleting
+//About transport displaying/editing/creating/deleting.
 require 'controller/controller_Transport.php';
-//About transport displaying/editing/creating/deleting
+//About transport displaying/editing/creating/deleting.
 require 'controller/controller_Activity.php';
-//About prerequisite displaying/editing/creating/deleting
+//About prerequisite displaying/editing/creating/deleting.
 require 'controller/controller_Prerequisite.php';
-//About prerequisite displaying/editing/creating/deleting
+//About prerequisite displaying/editing/creating/deleting.
 require 'controller/controller_Participant.php';
 
 try
@@ -182,8 +182,13 @@ try
                 break;
 
             //Change trip visibility
-             case 'change_Trip_Privacy';
+            case 'change_Trip_Privacy';
                 change_Trip_Privacy();
+                break;
+                
+            //Cancel a processing request or accetpted request
+            case 'cancel_Participation';
+                cancel_Participation();
                 break;
                 
             default :
@@ -199,6 +204,5 @@ try
 catch (Exception $e)
 {
    //Error page
-   //error();
-   echo 'Exception reçue : ',  $e->getMessage(), "\n";
+   error();
 }

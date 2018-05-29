@@ -1,5 +1,5 @@
 -- Creator: Herzig Melvyn.
--- Version: 15.05.2018.
+-- Version: 24.05.2018.
 -- Environment: Created for MySQL.
 -- Script made for: Create the database for web site Trip Planner
 
@@ -7,8 +7,8 @@
 -- Drop the schema if he already exists.
 -- Create the schema.
 -- --------------------------------------
--- DROP SCHEMA IF EXISTS `Trip_Planner`;
--- CREATE SCHEMA `Trip_Planner`;
+-- DROP SCHEMA IF EXISTS `tripplanne_db`;
+CREATE SCHEMA `tripplanne_db`;
 USE `tripplanne_db`;
 
 -- ---------------------------
@@ -87,9 +87,9 @@ CREATE TABLE IF NOT EXISTS `Transport` (
     `Time_Start` TIME NULL,
     `Time_End` TIME NULL,
     `Price` FLOAT(10,2) UNSIGNED NOT NULL DEFAULT 0,
-    `Link` TEXT(255) NULL,
+    `Link` VARCHAR(255) NULL,
     `Code` VARCHAR(45) NULL,
-    `Note` TEXT(280) NULL,
+    `Note` VARCHAR(280) NULL,
     `Image` TINYINT(1) NOT NULL DEFAULT 0,
     PRIMARY KEY (`idTransport`),
     INDEX `fk_Transport_Trip_Id` (`fkTrip` ASC),
@@ -139,8 +139,8 @@ CREATE TABLE IF NOT EXISTS `Lodging`(
     `Day_End` DATE NOT NULL,
     `Price` FLOAT(10,2) NOT NULL DEFAULT 0,
     `Code` VARCHAR(45) NULL,
-    `Link` TEXT(255) NULL,
-    `Note` TEXT(280) NULL,
+    `Link` VARCHAR(255) NULL,
+    `Note` VARCHAR(280) NULL,
     `Image` TINYINT(1) NOT NULL DEFAULT 0,
     PRIMARY KEY (`idLodging`),
     INDEX `fk_Lodging_Trip_Id` (`fkTrip` ASC),
@@ -167,8 +167,8 @@ CREATE TABLE IF NOT EXISTS `Activity` (
     `Description` VARCHAR(45) NOT NULL,
     `Price` FLOAT(10,2) UNSIGNED NOT NULL DEFAULT 0,
     `Date` DATE NULL,
-    `Link` TEXT(255) NULL,
-    `Note` TEXT(280) NULL,
+    `Link` VARCHAR(255) NULL,
+    `Note` VARCHAR(280) NULL,
     `Image` TINYINT(1) NOT NULL DEFAULT 0,
     PRIMARY KEY (`idActivity`),
     INDEX `fk_Activity_Trip_Id` (`fkTrip` ASC),

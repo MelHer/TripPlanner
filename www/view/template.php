@@ -9,6 +9,7 @@
 <html>
 	<head>
 		<title>Trip Planner</title>
+		<link rel="icon" href="favicon.png">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -74,10 +75,11 @@
 			<script src="assets/js/skel.min.js"></script>
             <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/util.js"></script>
-			
 			<script src="assets/js/main.js"></script>
 
-			<script src="assets/js/Trip.js"></script>
+			<script src="assets/js/trip.js"></script>
+            <script src="assets/js/html2canvas.min.js"></script>
+            <script src="assets/js/jsPDF.js"></script>
 
 	</body>
 </html>

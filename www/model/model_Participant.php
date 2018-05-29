@@ -86,7 +86,7 @@ function get_Request($m_Id_User)
     $connection = connect();
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $req = $connection->prepare("SELECT fkUser, Nickname, fkTrip, Title FROM Participant INNER JOIN User ON Participant.fkUser = User.idUser INNER JOIN Trip ON Participant.fkTrip = Trip.idTrip WHERE fkUser_Organizer = ? AND Waiting = true");
+    $req = $connection->prepare("SELECT fkUser, Nickname, fkTrip, Title FROM Participant INNER JOIN User ON Participant.fkUser = User.idUser INNER JOIN Trip ON Participant.fkTrip = Trip.idTrip WHERE fkUser_Organizer = ? AND Waiting = true ORDER BY Nickname ASC");
     $req->bindParam(1,$m_Id_User,PDO::PARAM_INT);
     $req->execute();
     
@@ -131,4 +131,20 @@ function accepted_Registration($m_Id_User, $m_Id_Trip)
     $result = $req->fetch(PDO::FETCH_ASSOC);
     
     return $result;
+}
+
+/**
+ * @brief Self remove a request for a trip participation.
+ * @param $m_Id_Trip Id of the trip to get a registration.
+ * @param $m_Id_User Id of the user to get a registration.
+ */
+function remove_Self($m_Id_User, $m_Id_Trip)
+{
+    $connection = connect();
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $req = $connection->prepare("DELETE FROM Participant WHERE fkTrip = ? AND fkUser = ?");
+    $req->bindParam(1,$m_Id_Trip,PDO::PARAM_INT);
+    $req->bindParam(2,$m_Id_User,PDO::PARAM_INT);
+    $req->execute();
 }

@@ -3,7 +3,7 @@
 ?>
 <header>
 	<h2>Editer l'activité</h2>
-	<p>Les champs marqués d'un * sont facultatifs</p>
+	<p>Les champs marqués d'un * sont obligatoires</p>
 </header>
 <div class="row">
     <div class="12u">
@@ -12,34 +12,34 @@
 			<form method="post" action="index.php?action=change_Activity&id=<?php echo $_GET['id'];?>" enctype="multipart/form-data">
 				<div class="row uniform 50%">
 					<div class="12u 12u(mobilep)">
-						<input type="text" name="description" placeholder="Description" value="<?php echo $activity['Description'];?>" maxlength="45" required/>
+						<input type="text" name="description" placeholder="Description*" value="<?php echo $activity['Description'];?>" maxlength="45" required/>
 					</div>
 				</div>
                 <div class="row uniform 50%">
                     <div class="6u 12u(mobilep)">
-                        <div>Prix:</div>
+                        <div>Prix*:</div>
 						<input type="number" id="price" onchange="two_Decimal()" name="price" value="<?php echo $activity['Price'];?>" value="0" min="0" step="0.01" required/>
                         <span>CHF</span>
                     </div>
                     <div class="6u 12u(mobilep)">
-						<div>Date de l'activité *:</div>
+						<div>Date de l'activité:</div>
 						<input type="date" id="start" name="date_Activity" value="<?php echo $activity['Date'];?>" min="2018-01-01"/>
 					</div>
                 </div>
 				<div class="row uniform 50%">
 					<div class="12u 12u(mobilep)">
-						<input type="text" name="link" placeholder="Lien*" value="<?php echo $activity['Link'];?>" maxlength="255"/>
+						<input type="text" name="link" placeholder="Lien" value="<?php echo $activity['Link'];?>" maxlength="255"/>
 					</div>
 				</div>
                 <div class="row uniform 50%">
                     <div class="12u 12u(mobilep)">
-						<input type="text" name="note" placeholder="Remarque*" value="<?php echo $activity['Note'];?>" maxlength="280"/>
+						<input type="text" name="note" placeholder="Remarque" value="<?php echo $activity['Note'];?>" maxlength="280"/>
                     </div>
                 </div>
 				<div class="row uniform 50%">
 					<div class="6u 12u(mobilep)">
 						<input type="file" name="image"/>
-						<label for="image">Image de l'activité*</label>
+						<label for="image">Image de l'activité</label>
 					</div>
                     <div class="2u 12u(mobilep)">
 				        <span>Image actuelle:</span>

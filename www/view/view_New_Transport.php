@@ -3,7 +3,7 @@
 ?>
 <header>
 	<h2>Nouveau transport</h2>
-	<p>Les champs marqués d'un * sont facultatifs</p>
+	<p>Les champs marqués d'un * sont obligatoires</p>
 </header>
 <div class="row">
     <div class="12u">
@@ -12,35 +12,35 @@
 			<form method="post" action="index.php?action=new_Transport&id=<?php echo $_GET['id'];?>" enctype="multipart/form-data">
 				<div class="row uniform 50%">
 					<div class="6u 12u(mobilep)">
-						<input type="text" name="place_Start" placeholder="Lieu de départ" maxlength="45" required/>
+						<input type="text" name="place_Start" placeholder="Lieu de départ*" maxlength="45" required/>
 					</div>
                     <div class="6u 12u(mobilep)">
-						<input type="text" name="place_End" placeholder="Lieu d'arrivée" maxlength="45" required/>
+						<input type="text" name="place_End" placeholder="Lieu d'arrivée*" maxlength="45" required/>
 					</div>
 				</div>
                 <div class="row uniform 50%">
 					<div class="6u 12u(mobilep)">
-						<label for="date_Start">Date du départ:</label>
+						<label for="date_Start">Date du départ*:</label>
 						<input type="date" id="start" name="date_Start" onchange="set_Min_Date()" min="2018-01-01" required/>
 					</div>
 					<div class="6u 12u(mobilep)">
-						<label for="date_End">Date d'arrivée:</label>
+						<label for="date_End">Date d'arrivée*:</label>
 						<input type="date" id="end"  name="date_End" onchange="set_Min_Date()" required/>
 					</div>
 				</div>
                 <div class="row uniform 50%">
 					<div class="6u 12u(mobilep)">
-						<label for="date_Start">Heure du départ*:</label>
+						<label for="date_Start">Heure du départ:</label>
 						<input type="time" name="time_Start"/>
 					</div>
 					<div class="6u 12u(mobilep)">
-						<label for="date_End">Heure d'arrivée*:</label>
+						<label for="date_End">Heure d'arrivée:</label>
 						<input type="time"  name="time_End"/>
 					</div>
 				</div>
                 <div class="row uniform 50%">
                     <div class="6u 12u(mobilep)">
-                        <div>Prix:</div>
+                        <div>Prix*:</div>
 						<input type="number" id="price" onchange="two_Decimal()" name="price" value="0" min="0" step="0.01" required/>
                         <span>CHF</span>
                     </div>
@@ -59,10 +59,10 @@
                 </div>
 				<div class="row uniform 50%">
 					<div class="6u 12u(mobilep)">
-						<input type="text" name="code" placeholder="Code de résertvation*"/>
+						<input type="text" name="code" placeholder="Code de résertvation" maxlength="45"/>
 					</div>
 					<div class="6u 12u(mobilep)">
-						<input type="text" name="link" placeholder="Lien*" maxlength="255"/>
+						<input type="text" name="link" placeholder="Lien" maxlength="255"/>
 					</div>
 				</div>
                 <div class="row uniform 50%">

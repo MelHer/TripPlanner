@@ -21,7 +21,7 @@ function get_User_Trip($m_User_Id,$m_Index)
         $m_Index = 0;
     }
     
-    $req = $connection->prepare("SELECT DISTINCT idTrip, Title, Destination, Date_Start, Date_End, Creation, Image FROM Trip LEFT JOIN Participant ON Trip.idTrip = Participant.fkTrip WHERE fkUser_Organizer = ? OR (fkUser = ? AND Waiting = false) ORDER BY Creation DESC LIMIT ?,5");
+    $req = $connection->prepare("SELECT DISTINCT Trip.* FROM Trip LEFT JOIN Participant ON Trip.idTrip = Participant.fkTrip WHERE fkUser_Organizer = ? OR (fkUser = ? AND Waiting = false) ORDER BY Creation DESC LIMIT ?,5");
     $req->bindParam(1,$m_User_Id,PDO::PARAM_INT);
     $req->bindParam(2,$m_User_Id,PDO::PARAM_STR);
     $req->bindParam(3,$m_Index,PDO::PARAM_INT);
@@ -282,7 +282,7 @@ function get_Public_Trip($m_Index)
         $m_Index = 0;
     }
     
-    $req = $connection->prepare("SELECT fkUser_Organizer,Nickname,Title,Destination,Date_Start,Date_End,Creation,Image,idTrip FROM Trip INNER JOIN User ON Trip.fkUser_Organizer = User.idUser WHERE Private = false ORDER BY Creation DESC LIMIT ?,5");
+    $req = $connection->prepare("SELECT fkUser_Organizer,Nickname,Title,Destination,Date_Start,Date_End,Creation,Image,idTrip FROM Trip INNER JOIN User ON Trip.fkUser_Organizer = User.idUser WHERE Private = false  ORDER BY Creation DESC LIMIT ?,5");
     $req->bindParam(1,$m_Index,PDO::PARAM_INT);
     $req->execute();
 
@@ -308,4 +308,34 @@ function get_Public_Trip_Info($m_Id_Trip)
     $result = $req->fetch(PDO::FETCH_ASSOC);
     
     return $result;
+}
+
+/**
+ * @brief Change the privacy of a trip to private
+ * @param $m_Id_Trip Id of the trip to change.
+ */
+function change_Privacy_Private($m_Id_Trip)
+{
+    $connection = connect();
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $req = $connection->prepare("UPDATE Trip SET Private = true, Password = NULL WHERE idTrip = ?");
+    $req->bindParam(1,$m_Id_Trip,PDO::PARAM_INT);
+    $req->execute();
+}
+
+/**
+ * @brief Change the privacy of a trip to public
+ * @param $m_Id_Trip Id of the trip to change.
+ * @param $m_Password_Hasg Hash of the password.
+ */
+function change_Privacy_Public($m_Id_Trip, $m_Password_Hash)
+{
+    $connection = connect();
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $req = $connection->prepare("UPDATE Trip SET Private = false, Password = ? WHERE idTrip = ?");
+    $req->bindParam(1,$m_Password_Hash,PDO::PARAM_INT);
+    $req->bindParam(2,$m_Id_Trip,PDO::PARAM_INT);
+    $req->execute();
 }
