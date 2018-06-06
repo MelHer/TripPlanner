@@ -12,14 +12,17 @@ Here is the folder structure explaination:
 
 This folder can be deployed on a web server.
 
-### Documentation:
-- Holds the diffrent documents made along the project.
-- Those are the originals.
-
 ### Database:
 - This folder contains:
 	- The final database creation script.
 	- The test database creation script with fictive datas.
+
+### Documentation:
+- Holds the diffrent documents made along the project.
+- Those are the originals.
+
+### Rendu:
+- Content given to the project leader and the experts on a CD.
 
 
 

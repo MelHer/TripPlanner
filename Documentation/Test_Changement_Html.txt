@@ -1,0 +1,4 @@
+Création voyage:
+	Titre non nul et plus petit que 45 : ok
+	Destination non nulle est plus petite que 45: ok
+	Date non nulle, format valid, départ < fin: ok
